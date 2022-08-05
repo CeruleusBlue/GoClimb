@@ -18,6 +18,7 @@ def signIn(request):
     return render(request,'signIn.html')
 
 def signUp(request):
+    #creates user, authenticates username for duplicates and hashes the password
     form = UserCreationForm()
 
     if request.method == 'POST':
