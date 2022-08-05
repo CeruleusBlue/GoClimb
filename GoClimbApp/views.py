@@ -18,6 +18,15 @@ def signIn(request):
     return render(request,'signIn.html')
 
 def signUp(request):
+    form = UserCreationForm()
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+
+    context = {'form' :form}
     return render(request,'signUp.html')
 
 def Crags(request):
