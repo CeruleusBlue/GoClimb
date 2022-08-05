@@ -31,6 +31,9 @@
                     <div class="login-wrap p-0">
 
                         <form method= "POST" action="#" class="signin-form">
+				{%csrf_token %}
+				<! this token allows Django to handle the data upon submission>
+
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Username" required>
                             </div>
