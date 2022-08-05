@@ -10,20 +10,21 @@ Pre-Requisites
 
 All of these can be installed through the python package manager using the pip command.
 
-eg:-  if version is mentioned
+eg:-  
+if version is mentioned
 
       pip install django==3.2 
       
-      if version is not mentioned
+if version is not mentioned
       
       pip install pytz
      
      
 Running the Server
 
-python manage.py makemigrations
+      python manage.py makemigrations
 
-python manage.py migrate
+      python manage.py migrate
 
-python manage.py runserver
+      python manage.py runserver
 
