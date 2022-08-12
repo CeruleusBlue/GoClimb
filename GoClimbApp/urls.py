@@ -12,6 +12,7 @@ urlpatterns = [
     path('Crags', views.Crags, name="Crags"),
     path('MyClimbs', views.MyClimbs, name="MyClimbs"),
     path('MyCommunity', views.MyCommunity, name="MyCommunity"),
+    path('MyCommunity/create', views.MyCommunityCreate, name="MyCommunityCreate" ),
     path('Settings', views.Settings, name="Settings"),
 
 ]+ static(settings.MEDIA_URL,

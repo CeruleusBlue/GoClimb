@@ -22,6 +22,17 @@
     <link rel="stylesheet" href="{% static 'css/owl-carousel/owl.theme.default.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/YouTubePopUp.css' %}">
+    <style>
+        .post-frame {
+          height: 300px;
+          width: 500px;
+          background-color: white;
+          border: 1px;
+          border-style: solid;
+          border-color: black;
+          margin: 5px
+        }
+    </style>
 </head>
 
 <body>
@@ -30,35 +41,23 @@
             <a href="{% url 'home' %}"> <img src="{% static 'images/ID.png' %}" style="width: 96px; height: 96px;" alt="" />Customer ID</a>
         </div>
         <div>
-            <form action="/action_page.php">
-                <textarea style="background-color: rgb(151, 151, 243) ;" id="massege" placeholder="Massege" name="massege" rows="4" cols="50"></textarea>
+            <form method="POST" action="MyCommunity/create">
+                {% csrf_token %}
+                <textarea style="background-color: rgb(151, 151, 243) ;" id="message" placeholder="Massege" name="message" rows="4" cols="50"></textarea>
                 <br>
                 <input type="submit" value="     Post    " style="background-color:#f84c24; ">
             </form>
         </div>
         <br><br><br>
+        <ul>
+            {% for post in posts %}
+                <img src="{% static 'images/ID.png' %}" style="width: 30px; height: 30px;" alt="" />
+                <li><div class="post-frame">{{post.text}}</div></li>
+                <a href=""><img style="width: 15px; height: 15px; margin-left: 20%;" src="{% static 'images/heart.png' %}" alt="" /></a>
+            {% endfor %}
+        </ul>
         <div class="about-image">
-            <img src="{% static 'images/ID.png' %}" style="width: 30px; height: 30px;" alt="" />
-            <input type="text" class="form-control" placeholder="Massege" required>
-            <a href=""><img style="width: 15px; height: 15px; margin-left: 80%;" src="{% static 'images/heart.png' %}" alt="" /></a>
-        </div>
-        <br><br>
-        <div class="about-image">
-            <img src="{% static 'images/ID.png' %}" style="width: 30px; height: 30px;" alt="" />
-            <input type="text" class="form-control" placeholder="Massege" required>
-            <a href=""><img style="width: 15px; height: 15px; margin-left: 80%;" src="{% static 'images/heart.png' %}" alt="" /></a>
-        </div>
-        <br><br>
-        <div class="about-image">
-            <img src="{% static 'images/ID.png' %}" style="width: 30px; height: 30px;" alt="" />
-            <input type="text" class="form-control" placeholder="Massege" required>
-            <a href=""><img style="width: 15px; height: 15px; margin-left: 80%;" src="{% static 'images/heart.png' %}" alt="" /></a>
-        </div>
-        <br><br>
-        <div class="about-image">
-            <img src="{% static 'images/ID.png' %}" style="width: 30px; height: 30px;" alt="" />
-            <input type="text" class="form-control" placeholder="Massege" required>
-            <a href=""><img style="width: 15px; height: 15px; margin-left: 80%;" src="{% static 'images/heart.png' %}" alt="" /></a>
+
         </div>
     </div>
 

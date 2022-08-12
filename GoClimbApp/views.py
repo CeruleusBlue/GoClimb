@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-
-
+from .models import MBPost
+from .forms import MBPostForm
 
 
 
@@ -27,7 +27,15 @@ def MyClimbs(request):
     return render(request,'MyClimbs.html')
 
 def MyCommunity(request):
-    return render(request,'MyCommunity.html')
+    posts = MBPost.objects.all()
+    args = {'posts':posts}
+    return render(request,'MyCommunity.html', args)
+
+def MyCommunityCreate(request):
+    message = request.POST.get("message")
+    args = {'postform': MBPostForm()}
+    MBPost.objects.create(text=message)
+    return MyCommunity(request)
 
 def Settings(request):
     return render(request,'Settings.html')
