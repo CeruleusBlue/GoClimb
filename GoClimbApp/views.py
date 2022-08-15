@@ -1,6 +1,14 @@
+#import from django library
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import redirect                   #Used for redirection of webpages
+from django.core.paginator import Paginator             #Used for implementing paginated lists
+
+#import from python library
+import datetime
+
+#import from project scripts
 from .models import MBPost
 from .forms import MBPostForm
 
@@ -37,15 +45,20 @@ def MyClimbs(request):
     return render(request,'MyClimbs.html')
 
 def MyCommunity(request):
-    posts = MBPost.objects.all()
+    posts = MBPost.objects.all().order_by('-time')
+    posts_paginator = Paginator(posts, 5)
+    page_no = request.GET.get('page')
+    posts = posts_paginator.get_page(page_no)
     args = {'posts':posts}
     return render(request,'MyCommunity.html', args)
 
 def MyCommunityCreate(request):
     message = request.POST.get("message")
+    title = request.POST.get("title")
+    time = datetime.datetime.now()
     args = {'postform': MBPostForm()}
-    MBPost.objects.create(text=message)
-    return MyCommunity(request)
+    MBPost.objects.create(text=message, title=title, time=time)
+    return redirect('MyCommunity')
 
 def Settings(request):
     return render(request,'Settings.html')
