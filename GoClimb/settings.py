@@ -78,7 +78,12 @@ WSGI_APPLICATION = 'GoClimb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'GoClimb'
+        'NAME': 'GoClimb',
+        'CLIENT':{
+            'host': 'mongodb+srv://<username>:,<password>@cluster0.yhtopor.mongodb.net/?retryWrites=true&w=majority',
+            'username': 'ceruleusmongo',
+            'password': 'FeyGL9pXTmo7gIFu',
+        }
     }
 }
 
