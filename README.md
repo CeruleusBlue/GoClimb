@@ -7,6 +7,7 @@ Pre-Requisites
 2. pymongo-3.12.1
 3. pytz
 4. djongo
+5. pymongo[srv]
 
 All of these can be installed through the python package manager using the pip command.
 
