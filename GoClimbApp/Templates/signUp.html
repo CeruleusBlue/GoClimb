@@ -30,23 +30,22 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="login-wrap p-0">
 
-                        <form method= "POST" action="">
-				            {%csrf_token %}
-				            <! this token allows Django to handle the data upon submission>
-
+                        <form method= "POST" action="#" class="signin-form">
+				{%csrf_token %}
+				<! this token allows Django to handle the data upon submission>
 
                             <div class="form-group">
-                                {{form.username}}
+                                <input type="text" class="form-control" placeholder="Username" required>
                             </div>
                             <div class="form-group">
-                                {{form.email}}
+                                <input type="email" class="form-control" placeholder="Email" required>
                             </div>
                             <div class="form-group">
-                                {{form.password1}}
+                                <input id="password-field" type="password" class="form-control" placeholder="Password" required>
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
                             <div class="form-group">
-                                {{form.password2}}
+                                <input id="password-field" type="password" class="form-control" placeholder="Confirm Password" required>
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
                             <div class="form-group">
@@ -64,11 +63,9 @@
                                 </div>
                             </div>
                         </form>
-
-                        {{form.errors}}
-
                         <div class="w-100 text-center">
                             <button style="background-color:#F04C26 ;border-radius: 10px; "> <a href="{% url 'signIn' %}" style="color: #000;"> <b> Sign In</b> </a> </button>
+
                         </div>
 
                     </div>
@@ -77,23 +74,14 @@
         </div>
     </section>
 
+    <script src="{% static 'signIn/js/jquery.min.js' %}"></script>
+    <script src="{% static 'signIn/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'signIn/js/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'signIn/js/owl-carousel/highlight.js' %}"></script>
+    <script src="{% static 'signIn/js/owl-carousel/app.js' %}"></script>
+    <script src="{% static 'signIn/js/jquery.fancybox.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'signIn/js/YouTubePopUp.jquery.js' %}"></script>
 
-	<script>
-		/* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
-		 */
-
-		//Query All input fields
-		var form_fields = document.getElementsByTagName('input')
-		form_fields[1].placeholder='Username..';
-		form_fields[2].placeholder='Email..';
-		form_fields[3].placeholder='Enter password...';
-		form_fields[4].placeholder='Re-enter Password...';
-
-
-		for (var field in form_fields){
-			form_fields[field].className += ' form-control'
-		}
-	</script>
 </body>
 
 </html>
