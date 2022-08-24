@@ -10,7 +10,6 @@ import datetime
 
 #import from project scripts
 from .models import MBPost
-from .forms import MBPostForm
 
 
 
@@ -56,7 +55,6 @@ def MyCommunityCreate(request):
     message = request.POST.get("message")
     title = request.POST.get("title")
     time = datetime.datetime.now()
-    args = {'postform': MBPostForm()}
     MBPost.objects.create(text=message, title=title, time=time)
     return redirect('MyCommunity')
 
