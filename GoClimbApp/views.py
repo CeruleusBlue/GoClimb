@@ -1,24 +1,25 @@
+#import from django library
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
-
+from django.shortcuts import redirect                   #Used for redirection of webpages
+from django.core.paginator import Paginator             #Used for implementing paginated lists
 from django.contrib.auth import authenticate, login, logout
-
 from django.contrib import messages
-
 from django.contrib.auth.decorators import login_required
 
+#import from python library
+import datetime
+
+#import from project scripts
+from .models import MBPost
+from .forms import MBPostForm
+from .models import *
 from .forms import OrderForm, CreateUserForm
 from .filters import OrderFilter
 
-from django.db import models
-
-
-
-
 # Create your views here.
-
 def index(request):
     return render(request,'index.html')
 
@@ -79,21 +80,24 @@ def MyClimbs(request):
     return render(request,'MyClimbs.html')
 
 
-
 @login_required(login_url='signIn')
 def MyCommunity(request):
-    posts = MBPost.objects.all()
+    posts = MBPost.objects.all().order_by('-time')
+    posts_paginator = Paginator(posts, 5)
+    page_no = request.GET.get('page')
+    posts = posts_paginator.get_page(page_no)
     args = {'posts':posts}
     return render(request,'MyCommunity.html', args)
-
 
 
 @login_required(login_url='signIn')
 def MyCommunityCreate(request):
     message = request.POST.get("message")
+    title = request.POST.get("title")
+    time = datetime.datetime.now()
     args = {'postform': MBPostForm()}
-    MBPost.objects.create(text=message)
-    return MyCommunity(request)
+    MBPost.objects.create(text=message, title=title, time=time)
+    return redirect('MyCommunity')
 
 
 @login_required(login_url='signIn')
