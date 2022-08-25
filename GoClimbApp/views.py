@@ -26,22 +26,22 @@ class homeView(View):
         return render(request, self.template_name)
 
 class signInView(View):
-    template_name = 'signin.html'
+    template_name = 'signIn.html'
     def get(self, request):
         return render(request, self.template_name)
 
 class signUpView(View):
     template_name = 'signUp.html'
 
-    def get(self, request):
-        return render(request, self.template_name)
+    def get(self, request, **kwargs):
+        return render(request, self.template_name, kwargs)
     
     def post(self, request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
         context = {'form' :form}
-        return render(request,'signUp.html',context)
+        return self.get(request, context=context)
 
 class cragsView(View):
     template_name = 'Crags.html'
@@ -72,7 +72,7 @@ class myCommunityView(View):
         return self.get(request)
 
 class settingsView(View):
-    template_name = 'settings.html'
+    template_name = 'Settings.html'
     def get(self, request):
         return render(request, self.template_name)
 
