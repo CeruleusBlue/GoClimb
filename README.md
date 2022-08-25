@@ -32,7 +32,7 @@ Running the Server
       python manage.py runserver
 
 
-Mac: 
+Mac(or any system with two different versions of python installed): 
 
       python3 manage.py makemigrations
 
