@@ -1,0 +1,7 @@
+django==3.2
+pymongo==3.12.1
+pytz
+djongo
+pymongo[srv]
+django-filter
+pillow

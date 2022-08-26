@@ -28,6 +28,7 @@
     <div class="about-image">
         <a href="{% url 'home' %}"> <img src="{% static 'images/ID.png' %}" style="width: 96px; height: 96px;" alt="" />Hello, {{request.user}}!</a>
         <span><a href="{% url 'logout' %}"> Logout </a></span>
+
     </div>
     <section class="about">
         <div class="container">
@@ -64,7 +65,7 @@
                 </div>
                 <div class="col-md-4" style="margin-top: 20px;">
                     <div class="about-image">
-                        <a href=""> <img src="{% static 'images/map.png' %}" style="width: 96px; height: 96px;" alt="" /></a>
+                        <a href="{% url 'Crags' %}"> <img src="{% static 'images/map.png' %}" style="width: 96px; height: 96px;" alt="" /></a>
                     </div>
                     <div class="about-inner-content">
                         <p>

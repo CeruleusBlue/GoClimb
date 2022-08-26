@@ -41,7 +41,7 @@
             <a href="{% url 'home' %}"> <img src="{% static 'images/ID.png' %}" style="width: 96px; height: 96px;" alt="" />Customer ID</a>
         </div>
         <div>
-            <form method="POST" action="MyCommunity/create">
+            <form method="POST" action="">
                 {% csrf_token %}
                 <textarea style="background-color: rgb(151, 151, 243) ;" id="message" placeholder="Massege" name="message" rows="4" cols="50"></textarea>
                 <br>
