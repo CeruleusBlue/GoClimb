@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect                   #Used for redirection of webpages
 from django.core.paginator import Paginator             #Used for implementing paginated lists
+from django.conf import settings
 
 #import from python library
 import datetime
@@ -64,4 +65,34 @@ def Settings(request):
     return render(request,'Settings.html')
 
 
+def route(request): 
 
+  context = {"google_api_key": settings.GOOGLE_API_KEY}
+  return render(request, 'GoClimbApp/Templates/Crags.Crags.html', context)
+
+
+def map(request):
+
+	lat_a = request.GET.get("lat_a")
+	long_a = request.GET.get("long_a")
+	lat_b = request.GET.get("lat_b")
+	long_b = request.GET.get("long_b")
+	directions = Directions(
+		lat_a= lat_a,
+		long_a=long_a,
+		lat_b = lat_b,
+		long_b=long_b
+		)
+
+	context = {
+	"google_api_key": settings.GOOGLE_API_KEY,
+	"lat_a": lat_a,
+	"long_a": long_a,
+	"lat_b": lat_b,
+	"long_b": long_b,
+	"origin": f'{lat_a}, {long_a}',
+	"destination": f'{lat_b}, {long_b}',
+	"directions": directions,
+
+	}
+	return render(request, 'GoClimbApp/Templates/Crags.Crags.html', context)
