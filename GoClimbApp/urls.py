@@ -18,3 +18,13 @@ urlpatterns = [
 
 ]+ static(settings.MEDIA_URL,
                    document_root=settings.MEDIA_ROOT)
+
+#    path('',views.indexView.as_view()),
+#    path('index', views.indexView.as_view(), name="index"),
+#    path('home', views.homeView.as_view(), name="home"),
+#    path('signIn', views.signInView.as_view(), name="signIn"),
+#    path('signUp', views.signUpView.as_view(), name="signUp"),
+#    path('Crags', views.cragsView.as_view(), name="Crags"),
+#    path('MyClimbs', views.myClimbsView.as_view(), name="MyClimbs"),
+#    path('MyCommunity', views.myCommunityView.as_view(), name="MyCommunity"),
+#    path('Settings', views.settingsView.as_view(), name="Settings"),
