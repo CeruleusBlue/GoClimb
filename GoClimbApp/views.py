@@ -9,11 +9,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import MBPost
-from .forms import MBPostForm
 from .models import *
-from .forms import OrderForm, CreateUserForm
-from .filters import OrderFilter
+from .forms import *
 
 # Create your views here.
 
@@ -115,21 +112,45 @@ class homeView(View):
 
 class signInView(View):
     template_name = 'signIn.html'
+
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('home')
         return render(request, self.template_name)
+
+    def post(self, request):
+            username = request.POST.get('username')
+            password = request.POST.get('password')            
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                messages.info(request, 'Username OR password is incorrect')
+            return self.get(request)
+
 
 class signUpView(View):
     template_name = 'signUp.html'
+    form = CreateUserForm()
+    context = {'form': form}
 
-    def get(self, request, **kwargs):
-        return render(request, self.template_name, kwargs)
+    def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('home')
+        return render(request, self.template_name, self.context)
     
     def post(self, request):
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-        context = {'form' :form}
-        return self.get(request, context=context)
+        self.form = CreateUserForm(request.POST)
+        print (self.form.is_valid())
+        if self.form.is_valid():
+            print('running2')
+            self.form.save()
+            user = self.form.cleaned_data.get('username')
+            messages.success(request, 'Account was created for ' + user)
+            return redirect('signIn')
+        else:    
+            return self.get(request)
 
 class cragsView(View):
     template_name = 'Crags.html'
