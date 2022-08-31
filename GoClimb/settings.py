@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'GoClimb',
         'CLIENT':{
-            'host': 'mongodb+srv://<username>:,<password>@cluster0.yhtopor.mongodb.net/?retryWrites=true&w=majority',
+            'host': 'mongodb+srv://<username>:<password>@cluster0.hvk3kzs.mongodb.net/?retryWrites=true&w=majority',
             'username': 'ceruleusmongo',
             'password': 'FeyGL9pXTmo7gIFu',
         }

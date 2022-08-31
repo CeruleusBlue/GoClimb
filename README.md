@@ -8,6 +8,8 @@ Pre-Requisites
 3. pytz
 4. djongo
 5. pymongo[srv]
+6. django-filter
+7. pillow
 
 All of these can be installed through the python package manager using the pip command.
 
@@ -29,3 +31,11 @@ Running the Server
 
       python3 manage.py runserver
 
+
+Mac(or any system with two different versions of python installed): 
+
+      python3 manage.py makemigrations
+
+      python3 manage.py migrate
+
+      python3 manage.py runserver

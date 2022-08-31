@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "id":1,
+      "name":"Extra Terrestrial Turkey",
+      "grade":20, 
+      "image":"", 
+      "description":" An excellent problem on good rock. A good start makes the climb. Over roof (clip ringbolt), up wall (passing 2nd ringbolt) to top. Toprope rings",
+      "bolts":3,
+      "rating": 1, 
+      "length":7, 
+      "ascents":103, 
+      "first ascent":"First ascent: Ant Prehn, Graeme Hill & Ian Anger"
+    },
+    {
+      "id":2,
+      "routename":"Goober Grease",
+      "grade":25, 
+      "image":"", 
+      "description":"Pull up to the undercling slot in the roof then core your way left 2m to the lip. Struggle to clip the 3rd bolt then crank over the lip and up to the 2 rings passing alot of moss as you go!\nStart: Start to the left of 'One Blank Wall' under the roof.",
+      "bolts":4,
+      "rating":2, 
+      "length":10, 
+      "ascents":46, 
+      "first ascent":"Steve Bullen & Ant Prehn"
+    }
+  ]
+}
