@@ -47,7 +47,7 @@ class cragFace(models.Model):
 
 class userProfile(models.Model):
     userID = models.OneToOneField(User, default=None, on_delete=models.CASCADE)
-    level = models.IntegerField()
+    level = models.IntegerField(default=1)
 
 class climbHistory(models.Model):
     id = models.IntegerField(primary_key=True)

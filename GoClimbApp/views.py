@@ -59,12 +59,12 @@ class signUpView(View):
     
     def post(self, request):
         self.form = CreateUserForm(request.POST)
-        print (self.form.is_valid())
         if self.form.is_valid():
-            print('running2')
             self.form.save()
-            user = self.form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for ' + user)
+            username = self.form.cleaned_data.get('username')
+            user = User.objects.get(username=username)
+            userProfile.objects.create(userID=user)
+            messages.success(request, 'Account was created for ' + username)
             return redirect('signIn')
         else:    
             return self.get(request)
