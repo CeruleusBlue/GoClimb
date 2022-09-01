@@ -25,10 +25,8 @@
 </head>
 
 <body>
-    <div class="about-image">
-        <a href="{% url 'home' %}"> <img src="{% static 'images/ID.png' %}" style="width: 96px; height: 96px;" alt="" />Hello, {{request.user}}!</a>
-        <span><a href="{% url 'logout' %}"> Logout </a></span>
-
+    <div>
+        {%include "UserPanel.html" with user=request.user %}
     </div>
     <section class="about">
         <div class="container">

@@ -27,8 +27,8 @@
 
 <body style="background-color: #ed9c06;">
     <div>
-        <div class="about-image">
-            <a href="{% url 'home' %}"> <img src="{% static 'images/ID.png' %}" style="width: 96px; height: 96px;" alt="" />Customer ID</a>
+        <div>
+            {%include "UserPanel.html" with user=request.user %}
         </div>
         <div class="about-image">
             <a href="{% url 'home' %}"> <img src="{% static 'images/medal.png' %}" style="width: 60px; height: 60px;" alt="" /> <a style="font-weight: bold;color: black;">Level: Here the critria</a> </a>
