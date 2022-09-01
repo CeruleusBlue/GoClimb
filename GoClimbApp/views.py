@@ -1,6 +1,7 @@
 #import from django library
 
     #import 
+from re import template
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View
@@ -22,7 +23,6 @@ class homeView(LoginRequiredMixin, View):
     login_url='signIn'
     template_name = 'home.html'
     def get(self, request):
-        print(request.user.is_authenticated)
         return render(request, self.template_name)
 class signInView(View):
     template_name = 'signIn.html'
