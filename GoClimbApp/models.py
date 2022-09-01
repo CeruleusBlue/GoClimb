@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class MBPost(models.Model):
@@ -43,3 +44,11 @@ class cragFace(models.Model):
     approach = models.TextField()
     ethics = models.TextField()
     cragRouteFK = models.ForeignKey(cragRoute, default=None, on_delete=models.CASCADE)
+
+class userProfile(models.Model):
+    userID = models.OneToOneField(User, default=None, on_delete=models.CASCADE)
+    level = models.IntegerField()
+
+class climbHistory(models.Model):
+    id = models.IntegerField(primary_key=True)
+    userProfileFk = models.ForeignKey(userProfile, default=None, on_delete=models.CASCADE)
