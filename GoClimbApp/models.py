@@ -1,11 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
-class MBPost(models.Model):
-    text = models.TextField()
-    title = models.TextField()
-    time = models.DateTimeField(primary_key=True)
-
+# Create your models here.    
 class cragDestination(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.TextField()
@@ -26,12 +22,12 @@ class cragRoute(models.Model):
     length = models.IntegerField()
     ascents = models.IntegerField()
     firstAscent = models.TextField()
-    cragDestinationFK = models.ForeignKey(cragDestination, default=None, on_delete=models.CASCADE)
+    FKCragDestination = models.ForeignKey(cragDestination, default=None, on_delete=models.CASCADE)
 
 class cragRouteReview(models.Model):
     id = models.IntegerField(primary_key=True)
     body = models.TextField()
-    cragRouteFK = models.ForeignKey(cragRoute, default=None, on_delete=models.CASCADE)
+    FKCragRoute = models.ForeignKey(cragRoute, default=None, on_delete=models.CASCADE)
 
 class cragFace(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -42,4 +38,18 @@ class cragFace(models.Model):
     access = models.TextField()
     approach = models.TextField()
     ethics = models.TextField()
-    cragRouteFK = models.ForeignKey(cragRoute, default=None, on_delete=models.CASCADE)
+    FKCragRoute = models.ForeignKey(cragRoute, default=None, on_delete=models.CASCADE)
+
+class userProfile(models.Model):
+    userID = models.OneToOneField(User, default=None, on_delete=models.CASCADE)
+    level = models.IntegerField(default=1)
+
+class climbHistory(models.Model):
+    id = models.IntegerField(primary_key=True)
+    FkUserProfile = models.ForeignKey(userProfile, default=None, on_delete=models.CASCADE)
+
+class MBPost(models.Model):
+    text = models.TextField()
+    title = models.TextField()
+    time = models.DateTimeField(primary_key=True)
+    FKUserProfile = models.ForeignKey(userProfile, default=None, on_delete=models.CASCADE)

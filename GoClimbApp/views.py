@@ -1,6 +1,7 @@
 #import from django library
 
     #import 
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View
@@ -10,6 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+import datetime
 
 from .models import *
 from .forms import *
@@ -22,7 +24,6 @@ class homeView(LoginRequiredMixin, View):
     login_url='signIn'
     template_name = 'home.html'
     def get(self, request):
-        print(request.user.is_authenticated)
         return render(request, self.template_name)
 class signInView(View):
     template_name = 'signIn.html'
@@ -59,12 +60,12 @@ class signUpView(View):
     
     def post(self, request):
         self.form = CreateUserForm(request.POST)
-        print (self.form.is_valid())
         if self.form.is_valid():
-            print('running2')
             self.form.save()
-            user = self.form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for ' + user)
+            username = self.form.cleaned_data.get('username')
+            user = User.objects.get(username=username)
+            userProfile.objects.create(userID=user)
+            messages.success(request, 'Account was created for ' + username)
             return redirect('signIn')
         else:    
             return self.get(request)
@@ -97,7 +98,7 @@ class myCommunityView(LoginRequiredMixin, View):
         message = request.POST.get("message")
         title = request.POST.get("title")
         time = datetime.datetime.now()
-        MBPost.objects.create(text=message, title=title, time=time)
+        MBPost.objects.create(text=message, title=title, time=time, FKUserProfile=userProfile.objects.get(userID=request.user))
         return self.get(request)
 
 class settingsView(LoginRequiredMixin, View):
