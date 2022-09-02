@@ -77,13 +77,12 @@ WSGI_APPLICATION = 'GoClimb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'GoClimb',
-        'CLIENT':{
-            'host': 'mongodb+srv://<username>:<password>@cluster0.hvk3kzs.mongodb.net/?retryWrites=true&w=majority',
-            'username': 'ceruleusmongo',
-            'password': 'FeyGL9pXTmo7gIFu',
-        }
+        'USER': 'ceruleus',
+        'PASSWORD': 'AvsunxjMB2H2ydN',
+        'HOST': 'goclimb.mysql.database.azure.com',
+        'PORT': '3306',
     }
 }
 

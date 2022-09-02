@@ -1,4 +1,6 @@
 GoClimb/__pycache__/*
 GoClimbApp/__pycache__/*
 GoClimbApp/migrations/*
+GoClimbApp/templatetags/__pycache__/*
 
+.vscode/*
