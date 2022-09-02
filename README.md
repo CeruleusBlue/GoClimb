@@ -4,12 +4,13 @@
 Pre-Requisites
 
 1. django-3.2
-2. pymongo-3.12.1
-3. pytz
-4. djongo
-5. pymongo[srv]
-6. django-filter
+~~2. pymongo-3.12.1~~
+~~3. pytz~~
+~~4. djongo~~
+~~5. pymongo[srv]~~
+~~6. django-filter~~
 7. pillow
+8. mysqlclient
 
 All of these can be installed through the python package manager using the pip command.
 
@@ -20,7 +21,7 @@ if version is mentioned
       
 if version is not mentioned
       
-      pip install pytz
+      pip install pillow
      
      
 Running the Server
