@@ -4,11 +4,17 @@
 Pre-Requisites
 
 1. django-3.2
+<br>
 ~~2. pymongo-3.12.1~~
+<br>
 ~~3. pytz~~
+<br>
 ~~4. djongo~~
+<br>
 ~~5. pymongo[srv]~~
+<br>
 ~~6. django-filter~~
+<br>
 7. pillow
 8. mysqlclient
 
