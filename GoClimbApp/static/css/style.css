@@ -62,6 +62,14 @@ img {
 
 /*======BANNER CSS ENDS====*/
 
+/* maps stuff */ 
+body, html, .map-container {
+  height: 100%
+}
+
+map-route{
+  height: 75%
+}
 
 /*======HEADER CSS STARTS=======*/
 

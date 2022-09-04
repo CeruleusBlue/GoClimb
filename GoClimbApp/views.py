@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.conf import settings
+from .mixins import Directions
 
 
 from .models import *
@@ -75,6 +76,44 @@ class cragsView(LoginRequiredMixin, View):
     template_name = 'Crags.html'
     def get(self, request):
         return render(request, self.template_name)
+    # maps 
+    # def route(request):
+    #   context = {"google_api_key": settings.GOOGLE_API_KEY}
+    #   return render(request, 'Templates/Crags.html', context)
+
+class mapView(LoginRequiredMixin, View):
+    login_url='signIn'
+    template_name = 'map.html'
+    def get(self, reqeust): 
+      return render(request, self.template_name)
+    # '''
+    # Basic view for displaying a map 
+    # '''
+    # def map(request):
+
+    #   lat_a = request.GET.get("lat_a")
+    #   long_a = request.GET.get("long_a")
+    #   lat_b = request.GET.get("lat_b")
+    #   long_b = request.GET.get("long_b")
+    #   directions = Directions(
+    #     lat_a= lat_a,
+    #     long_a=long_a,
+    #     lat_b = lat_b,
+    #     long_b=long_b
+    #     )
+
+    #   context = {
+    #   "google_api_key": settings.GOOGLE_API_KEY,
+    #   "lat_a": lat_a,
+    #   "long_a": long_a,
+    #   "lat_b": lat_b,
+    #   "long_b": long_b,
+    #   "origin": f'{lat_a}, {long_a}',
+    #   "destination": f'{lat_b}, {long_b}',
+    #   "directions": directions,
+
+    #   }
+    #   return render(request, 'Templates/map.html', context)
 
 class myClimbsView(LoginRequiredMixin, View):
     login_url='signIn'
@@ -106,3 +145,37 @@ class settingsView(LoginRequiredMixin, View):
     template_name = 'Settings.html'
     def get(self, request):
         return render(request, self.template_name)
+
+
+
+
+def route(request):
+  context = {"google_api_key": settings.GOOGLE_API_KEY}
+  return render(request, 'Templates/Crags.html', context)
+
+
+def map(request):
+
+  lat_a = request.GET.get("lat_a")
+  long_a = request.GET.get("long_a")
+  lat_b = request.GET.get("lat_b")
+  long_b = request.GET.get("long_b")
+  directions = Directions(
+    lat_a= lat_a,
+    long_a=long_a,
+    lat_b = lat_b,
+    long_b=long_b
+    )
+
+  context = {
+  "google_api_key": settings.GOOGLE_API_KEY,
+  "lat_a": lat_a,
+  "long_a": long_a,
+  "lat_b": lat_b,
+  "long_b": long_b,
+  "origin": f'{lat_a}, {long_a}',
+  "destination": f'{lat_b}, {long_b}',
+  "directions": directions,
+
+  }
+  return render(request, 'Templates/map.html', context)

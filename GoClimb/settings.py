@@ -79,13 +79,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'GoClimb',
-        'CLIENT':{
-            'host': 'mongodb+srv://<username>:<password>@cluster0.hvk3kzs.mongodb.net/?retryWrites=true&w=majority',
-            'username': 'ceruleusmongo',
-            'password': 'FeyGL9pXTmo7gIFu',
-        }
     }
 }
+# 'CLIENT':{
+#     'host': 'mongodb+srv://<username>:<password>@cluster0.hvk3kzs.mongodb.net/?retryWrites=true&w=majority',
+#     'username': 'ceruleusmongo',
+#     'password': 'FeyGL9pXTmo7gIFu',
+# }
 
 
 # Password validation
@@ -134,3 +134,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
 GOOGLE_API_KEY = "AIzaSyDd9NJGxllp9MszEbkruOZfuI34_7nkANU"
+#GOOGLE_API_KEY = "AIzaSyAeg0ZHofiqvXoMg6yAZtZEYJBSj0Xukzw"

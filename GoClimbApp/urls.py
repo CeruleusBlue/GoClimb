@@ -14,8 +14,11 @@ urlpatterns = [
     path('MyCommunity', views.myCommunityView.as_view(), name="MyCommunity"),
     path('Settings', views.settingsView.as_view(), name="Settings"),
     path('logout/', views.logoutUser, name="logout"),
+    path('map', views.mapView, name='map')
 
+]
+# ] + static(settings.MEDIA_URL,
+#                    document_root=settings.MEDIA_ROOT)
 
-
-]+ static(settings.MEDIA_URL,
-                   document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG: 
+#   urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
