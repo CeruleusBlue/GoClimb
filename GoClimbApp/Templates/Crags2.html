@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Homepage</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- For Font style -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700,800" rel="stylesheet">
+    <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/owl-carousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl-carousel/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/YouTubePopUp.css' %}">
+</head>
+
+<body>
+    <div class="about-image">
+        <a href="{% url 'home' %}"> <img src="{% static 'images/ID.png' %}" style="width: 96px; height: 96px;" alt="" />Customer ID</a>
+    </div>
+    <div class="about-image"style="text-align:center" >
+        <a> <img src="{% static 'images/placeholder.png' %}" style="width: 40px; height: 40px;" alt="" /> <b style="font-size: large;">Mt. Keira </b></a>
+    </div>
+  
+</div>
+<br><br>
+
+<div style="width:100%;height: 250px;text-align: center;"><img src="{% static 'images/mountain.jpg' %}"> </div>
+
+<div class="container">
+    <div class="dropdown">
+      <button style="width: 100%;height: auto; background-color: #f04c26;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b style="font-size:30px;">Climb Type</b>
+      <span  style="font-size:30px;" class="caret"></span></button>
+      <ul style="width: 100%;height: auto;" class="dropdown-menu">
+        <li><a href="#">Option 1</a></li>
+        <li><a href="#">Option 2</a></li>
+        <li><a href="#">Option 3</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="font-size:20px;padding:5%;">
+    <form action="/action_page.php">
+        <input type="checkbox" id="select1" name="options" value="">
+        <label for="select1"> Has been climbed before</label><br>
+        <input type="checkbox" id="select2" name="options" value="">
+        <label for="select2"> Top roped</label><br>
+        <input type="checkbox" id="select3" name="options" value="">
+        <label for="select3"> Green Pointed</label><br>
+        <input type="checkbox" id="select4" name="options" value="">
+        <label for="select4"> Trad</label><br>
+        <input type="checkbox" id="select5" name="options" value="">
+        <label for="select5"> Boulder</label><br>
+      </form>
+  </div>
+  <div style="text-align: right;">
+  <button style="background-color: #f04c26;width: 20%;height:50px ; border-radius: 50%;" > <a href="{% url 'Crags3' %}"><b style="color: white;font-size: medium;">Go</b></a></button>
+  </div>
+
+
+    <br><br><br><br><br>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/owl-carousel/highlight.js' %}"></script>
+    <script src="{% static 'js/owl-carousel/app.js' %}"></script>
+    <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/YouTubePopUp.jquery.js' %}"></script>
+</body>
+
+</html>
