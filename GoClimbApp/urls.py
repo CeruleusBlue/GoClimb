@@ -10,6 +10,13 @@ urlpatterns = [
     path('signIn', views.signInView.as_view(), name="signIn"),
     path('signUp', views.signUpView.as_view(), name="signUp"),
     path('Crags', views.cragsView.as_view(), name="Crags"),
+    ######################################################
+    path('Crags1', views.Crags1, name="Crags1"),
+    path('Crags2', views.Crags2, name="Crags2"),
+    path('Crags3', views.Crags3, name="Crags3"),
+    path('Crags4', views.Crags4, name="Crags4"),
+    path('Crags5', views.Crags5, name="Crags5"),
+    #######################################################
     path('MyClimbs', views.myClimbsView.as_view(), name="MyClimbs"),
     path('MyCommunity', views.myCommunityView.as_view(), name="MyCommunity"),
     path('Settings', views.settingsView.as_view(), name="Settings"),
