@@ -106,3 +106,26 @@ class settingsView(LoginRequiredMixin, View):
     template_name = 'Settings.html'
     def get(self, request):
         return render(request, self.template_name)
+    
+    
+   #####################################################
+    New view of all crags relocate it as you want...
+   #####################################################
+def Crags(request):
+    return render(request,'Crags.html')
+
+def Crags1(request):
+    return render(request,'Crags1.html')
+
+def Crags2(request):
+    return render(request,'Crags2.html')
+
+def Crags3(request):
+    return render(request,'Crags3.html')
+
+def Crags4(request):
+    return render(request,'Crags4.html')
+
+def Crags5(request):
+    return render(request,'Crags5.html')
+###########################################################
