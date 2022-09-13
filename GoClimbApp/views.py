@@ -109,7 +109,7 @@ class settingsView(LoginRequiredMixin, View):
     
     
    #####################################################
-    New view of all crags relocate it as you want...
+    # New view of all crags relocate it as you want...
    #####################################################
 def Crags(request):
     return render(request,'Crags.html')
