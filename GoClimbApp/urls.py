@@ -14,6 +14,8 @@ urlpatterns = [
     path('MyCommunity', views.myCommunityView.as_view(), name="MyCommunity"),
     path('Settings', views.settingsView.as_view(), name="Settings"),
     path('logout/', views.logoutUser, name="logout"),
+    #path('', views.route, name="route"),
+	  path('map', views.map, name="map"),
 
 
 

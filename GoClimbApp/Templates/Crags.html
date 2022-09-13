@@ -1,5 +1,8 @@
 {% load static %}
 <!DOCTYPE html>
+<script src='https://www.google.com/recaptcha/api.js?render={{recaptcha_site_key}}'></script>
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAeg0ZHofiqvXoMg6yAZtZEYJBSj0Xukzw"></script>
+
 <html lang="en">
 
 <head>
@@ -31,21 +34,41 @@
     <div class="form-group">
         <input type="text" class="form-control" placeholder="Location" required>
     </div>
+    <div>
+      <ul class="sidenav">
+        <li><a class="active">Demo Routing</a></li>
+        <li><a href="javascript:void(0)" onclick="alert('Please add a start and end address')">Demo Map</a></li>
+      </ul>
+    </div>
+    <div class="container">
+
+      <label for="id-google-address-a">Start Address</label>
+      <input type="text" placeholder="*Begin typing address" id="id-google-address-a" name="google_address_a">
+   
+      <label for="id-google-address-b">Destination Address</label>
+      <input type="text" placeholder="*Begin typing address" id="id-google-address-b" name="google_address_b">
+   
+   
+      <input type="hidden" class="geo" id="id-lat-a" value="">
+      <input type="hidden" class="geo" id="id-long-a" value="">
+      <input type="hidden" class="geo" id="id-lat-b" value="">
+      <input type="hidden" class="geo" id="id-long-b" value="">
+   
+   
+   </div>
 
 
-    <div id="googleMap" style="width:100%;height:600px;"></div>
+   <div class="map-container">
 
-    <script>
-        function myMap() {
-            var mapProp = {
-                center: new google.maps.LatLng(51.508742, -0.120850),
-                zoom: 5,
-            };
-            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-        }
-    </script>
+    <div id="map-route"></div>
+ 
+ 
+  </div>
+
+
+
+
     <br><br>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
     <div style="text-align:right ;">
         <img src="{% static 'images\cloud (1).png' %}" alt="" style="width:50px;height:50px; margin-right: 5%;">
         <img src="{% static 'images\sun.png' %}" alt="" style="width:50px;height:50px;margin-right: 5%;">
@@ -59,6 +82,29 @@
     <script src="{% static 'js/owl-carousel/app.js' %}"></script>
     <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/YouTubePopUp.jquery.js' %}"></script>
+
+    <script type="text/javascript">
+
+      //var google_api_key = "{{google_api_key|safe}}";
+      var google_api_key = "AIzaSyAeg0ZHofiqvXoMg6yAZtZEYJBSj0Xukzw"
+    </script>
+    <script src="{% static 'main.js' %}"></script>
+
+    <script src="{% static 'google_places.js' %}"></script>
+    <script src="{% static 'google_maps.js' %}"></script>
+
+    <script type="text/javascript">
+
+      var google_api_key = "{{google_api_key|safe}}";
+      var lat_a = {{lat_a|safe}};
+      var long_a = {{long_a|safe}};
+      var lat_b = {{lat_a|safe}};
+      var long_b = {{long_b|safe}};
+      var origin = "{{origin|safe}}";
+      var destination = "{{destination|safe}}";
+      var directions = {{directions|safe}}
+  
+    </script>
 </body>
 
 </html>
