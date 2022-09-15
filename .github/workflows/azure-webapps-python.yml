@@ -78,6 +78,12 @@ jobs:
           name: python-app
           path: .
           
+      - name: Run Python Server
+        run: |
+          python manage.py makemigrations
+          python manage.py migrate
+          python manage.py runserver
+          
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
