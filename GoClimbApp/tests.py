@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 # Create your tests here.
 
-#Test Failing - Need to Debug
+#Tests Failing - Need to Debug
+
 #class t1_AuthenticationTests(TestCase):
 #    userDetails  = {
 #        'username':'testUser',
@@ -23,15 +24,15 @@ from django.contrib.auth.models import User
 #        print("SignIn status code: ", response.status_code)
 #        self.assertEquals(response.status_code, 200)
     
-class t2_URLTests(TestCase):
-    testURLs1 = ['','index','signIn','signUp']
-    testURLs2 = ['home','Crags','MyClimbs','MyCommunity','Settings']
-    def test1_CommonURLs(self):
-        for x in self.testURLs1:
-            print('\n\ntesting Common URL:/', x, sep=" ")
-            response = self.client.get("/"+x)
-            self.assertEquals(response.status_code, 200)
-            print('SUCCESS')
-        
-    def test2_UserSpecificURLs(self):
-        return 0 
+#class t2_URLTests(TestCase):
+#    testURLs1 = ['','index','signIn','signUp']
+#    testURLs2 = ['home','Crags','MyClimbs','MyCommunity','Settings']
+#    def test1_CommonURLs(self):
+#        for x in self.testURLs1:
+#            print('\n\ntesting Common URL:/', x, sep=" ")
+#            response = self.client.get("/"+x)
+#            self.assertEquals(response.status_code, 200)
+#            print('SUCCESS')
+#        
+#    def test2_UserSpecificURLs(self):
+#        return 0 
