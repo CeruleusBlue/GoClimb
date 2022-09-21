@@ -15,6 +15,12 @@ import datetime
 
 from .models import *
 from .forms import *
+
+
+
+import urllib.request
+import json
+
 class indexView(View):
     template_name = 'index.html'
     def get(self, request):
@@ -114,10 +120,41 @@ class settingsView(LoginRequiredMixin, View):
 def Crags(request):
     return render(request,'Crags.html')
 
-def Crags1(request):
-    return render(request,'Crags1.html')
+class Crags1(LoginRequiredMixin, View):
+    login_url='Crags1'
+    template_name = 'Crags1.html'
+
+
+    def get(self, request):
+        data = {}
+
+        city = 'Wollongong'
+
+        source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q=' +
+                                            city + '&units=metric&appid=6e1079025f4832f4f4947ebbf8276420').read()
+        list_of_data = json.loads(source)
+
+        data = {
+            "temp": str(list_of_data['main']['temp']) + ' °C',
+            "pressure": str(list_of_data['main']['pressure']),
+            "humidity": str(list_of_data['main']['humidity']),
+            'main': str(list_of_data['weather'][0]['main']),
+            'description': str(list_of_data['weather'][0]['description']),
+            'icon': list_of_data['weather'][0]['icon'],
+            "wind": str(list_of_data['wind']['speed']) + ' m/s'
+        }
+        print(data)
+
+        return render(request, self.template_name)
+
+    def post(self, request):
+        
+        return self.get(request)
+
+
 
 def Crags2(request):
+
     return render(request,'Crags2.html')
 
 def Crags3(request):
