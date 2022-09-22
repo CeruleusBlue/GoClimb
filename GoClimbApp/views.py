@@ -134,23 +134,19 @@ class Crags1(LoginRequiredMixin, View):
                                             city + '&units=metric&appid=6e1079025f4832f4f4947ebbf8276420').read()
         list_of_data = json.loads(source)
 
-        warningData = {}
 
-        if float(list_of_data['wind']['speed']) > 5:
-            warningData["windWarning"] = "Wind Hazard!"
+        if float(list_of_data['wind']['speed']) > 1:
+            data["windWarning"] = "Wind Hazard!"
             
         
-        print(warningData)
 
        # if int(list_of_data['rain']['3h']) > 5:
           #  warningData["windWarning"] = "Wind Hazard!"
             
         
-        print(warningData)
 
         data = {
             "temp": str(list_of_data['main']['temp']) + ' °C',
-           # "rain": str(list_of_data['rain']['3h']) + ' mm',
             "pressure": str(list_of_data['main']['pressure']),
             "humidity": str(list_of_data['main']['humidity']),
             'main': str(list_of_data['weather'][0]['main']),
