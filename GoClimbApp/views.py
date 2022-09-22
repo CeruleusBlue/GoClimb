@@ -135,10 +135,6 @@ class Crags1(LoginRequiredMixin, View):
         list_of_data = json.loads(source)
 
 
-        if float(list_of_data['wind']['speed']) > 1:
-            data["windWarning"] = "Wind Hazard!"
-            
-        
 
        # if int(list_of_data['rain']['3h']) > 5:
           #  warningData["windWarning"] = "Wind Hazard!"
@@ -154,6 +150,16 @@ class Crags1(LoginRequiredMixin, View):
             'icon': list_of_data['weather'][0]['icon'],
             "wind": str(list_of_data['wind']['speed']) + ' m/s'
         }
+        print(data)
+
+        
+        if float(list_of_data['wind']['speed']) > 4:
+            data["windWarning"] = 'Wind Hazard!'
+
+        if str(list_of_data['weather'][0]['main']) == 'Rain':
+            data["rainWarning"] = 'Rain Hazard!'
+            
+        
         print(data)
 
         return render(request, self.template_name, data)
