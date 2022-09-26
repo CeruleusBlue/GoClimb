@@ -22,6 +22,16 @@
     <link rel="stylesheet" href="{% static 'css/owl-carousel/owl.theme.default.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/YouTubePopUp.css' %}">
+
+
+    
+    <!-- cerulean template -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.3/cerulean/bootstrap.min.css"
+    integrity="sha512-dQLT/B7byn2LjN/DN4zeBKpwGV6qbidV0XiMRWQOL7TGrV7FkZFldkGG+DGMU+CQnMTcRZlUI7GMWt1j6akNew=="
+    crossorigin="anonymous" />
+
+
+
 </head>
 
 <body>
@@ -50,6 +60,7 @@
       }
   </script>
     <br><br>
+<<<<<<< HEAD
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeg0ZHofiqvXoMg6yAZtZEYJBSj0Xukzw&callback=myMap"></script>
     <div>
     <table>
@@ -65,14 +76,48 @@
         <img src="{% static 'images\sun.png' %}" alt="" style="width:50px;height:50px;margin-right: 5%;">
         <img src="{% static 'images\storm.png' %}" alt="" style="width:50px;height:50px;margin-right: 5%;">
     </div>
+=======
+    <div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeg0ZHofiqvXoMg6yAZtZEYJBSj0Xukzw&callback=myMap"></script>
+      
+</div>
+>>>>>>> weather
     <br><br><br><br><br>
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/owl-carousel/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'js/owl-carousel/highlight.js' %}"></script>
-    <script src="{% static 'js/owl-carousel/app.js' %}"></script>
-    <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/YouTubePopUp.jquery.js' %}"></script>
+
+    <br /><br /> <br>
+
+ 
+  <br> <br>
+
+  <div class="row">
+      <div class="col d-flex justify-content-center">
+        <div class=" card text-white bg-light mb-6">
+        <div class=" card-body">
+          <h4><span class="badge badge-primary">Temperature in Celsius :</span> {{temp}}</h4>
+          <h4><span class="badge badge-primary">Pressure :</span> {{pressure}} </h4>
+          <h4><span class="badge badge-primary">Humidity : </span> {{humidity}}</h4>
+          <h4><span class="badge badge-primary">Forecast : </span> {{main}} <img
+              src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
+          <h4><span class="badge badge-primary">Description : </span> {{description}}</h4>
+          <h4><span class="badge badge-primary">Wind Speed :</span> {{wind}}</h4>
+          <h4><span class="badge badge-primary">Wind Hazard! :</span> {{windWarning}}</h4>
+          <h4><span class="badge badge-primary">Rain Hazard! :</span> {{rainWarning}}</h4>
+
+        </div>
+
+      
+
+      </div>
+    </div>
+
+      <br><br><br><br><br>
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'js/owl-carousel/owl.carousel.min.js' %}"></script>
+      <script src="{% static 'js/owl-carousel/highlight.js' %}"></script>
+      <script src="{% static 'js/owl-carousel/app.js' %}"></script>
+      <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/YouTubePopUp.jquery.js' %}"></script>
 </body>
 
 </html>
