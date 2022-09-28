@@ -2,7 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+from GoClimbApp.generateModels import generateModels 
 
 def main():
     """Run administrative tasks."""
@@ -20,3 +20,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+

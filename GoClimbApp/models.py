@@ -37,7 +37,6 @@ class cragFace(models.Model):
     description = models.TextField()
     access = models.TextField()
     approach = models.TextField()
-    ethics = models.TextField()
     FKCragRoute = models.ForeignKey(cragRoute, default=None, on_delete=models.CASCADE)
 
 class userProfile(models.Model):
