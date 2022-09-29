@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class cragDestination(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.TextField()
-    summary = models.TextField
+    summary = models.TextField()
     description = models.TextField()
     access = models.TextField()
     approach = models.TextField()
