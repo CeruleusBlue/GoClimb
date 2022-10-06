@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@lv_y=9m@v%_i6q*bpnq*6@2vs9gho8#x7b3m&e=z-)0z#xx1p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['goclimb.azurewebsites.net', '127.0.0.1']
 
