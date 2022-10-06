@@ -5,11 +5,21 @@ from django.contrib.auth.models import User
 class cragDestination(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.TextField()
-    summary = models.TextField
+    summary = models.TextField()
     description = models.TextField()
     access = models.TextField()
     approach = models.TextField()
     history = models.TextField()
+
+class cragFace(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.TextField()
+    locationX = models.FloatField()
+    locationY = models.FloatField()
+    description = models.TextField()
+    access = models.TextField()
+    approach = models.TextField()
+    FKCragDestination = models.ForeignKey(cragDestination, default=None, on_delete=models.CASCADE)
 
 class cragRoute(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -22,24 +32,12 @@ class cragRoute(models.Model):
     length = models.IntegerField()
     ascents = models.IntegerField()
     firstAscent = models.TextField()
-    FKCragDestination = models.ForeignKey(cragDestination, default=None, on_delete=models.CASCADE)
+    FKCragFace = models.ForeignKey(cragFace, default=None, on_delete=models.CASCADE)
 
 class cragRouteReview(models.Model):
     id = models.IntegerField(primary_key=True)
     body = models.TextField()
     FKCragRoute = models.ForeignKey(cragRoute, default=None, on_delete=models.CASCADE)
-
-class cragFace(models.Model):
-    id = models.IntegerField(primary_key=True)
-    name = models.TextField()
-    locationX = models.FloatField()
-    locationY = models.FloatField()
-    description = models.TextField()
-    access = models.TextField()
-    approach = models.TextField()
-    ethics = models.TextField()
-    FKCragRoute = models.ForeignKey(cragRoute, default=None, on_delete=models.CASCADE)
-
 class userProfile(models.Model):
     userID = models.OneToOneField(User, default=None, on_delete=models.CASCADE)
     level = models.IntegerField(default=1)
