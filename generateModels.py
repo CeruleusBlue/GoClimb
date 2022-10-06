@@ -14,7 +14,16 @@ def generateCragDestination():
   for i in data['destinations']:
     destination =  cragDestination(**i)
     destination.save()
-#generateCragDestination()
+
+def generateCragFace():
+  # import faces 
+  filename = 'cragData/faces.json'
+  file = open(filename)
+  data = json.load(file)
+  for i in data['faces']: 
+    for j in i['destinationFaces']:
+      face = cragFace(**j, FKCragDestination=cragDestination.objects.get(name=i['destinationName']))
+      face.save()
 
 def generateCragRoute():
   # import routes 
@@ -22,15 +31,10 @@ def generateCragRoute():
   file = open(filename)
   data = json.load(file)
   for i in data['routes']: 
-    for j in i['destinationRoutes']:
-      route = cragRoute(**j, FKCragDestination=cragDestination.objects.get(name=i['destinationName']))
+    for j in i['faceRoutes']:
+      route = cragRoute(**j, FKCragFace=cragFace.objects.get(name=i['faceName']))
       route.save()
-#generateCragRoute()    
 
-def generateCragFace():
-  # import faces 
-  filename = 'cragData/faces.json'
-  file = open(filename)
-  data = json.load(file)
-  for i in range(len(data)): 
-    pass
+generateCragDestination()
+generateCragFace()
+generateCragRoute()    

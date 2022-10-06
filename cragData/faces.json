@@ -1,13 +1,18 @@
 {
   "faces":[
     {
-      "id":1,
-      "name":"west_face",
-      "locationX":-34.4027700,
-      "locationY":150.8539690,
-      "description":"The West Face is probably the most frequently climbed area at Mt Keira. It has a maximum height of 15m with approx. 90climbs. All of the bracketed routes have been replaced with steel ring bolts.", 
-      "access":"The Mount Keira summit park is an easy 15 minute drive from the Wollongong CBD. The park is surrounded by the Illawarra Escarpment State Conversation area and is covered in thick sub-tropical rainforest and eucalypt forest, and is open to the public all year round. Be aware the vehicle gate to the summit park is closed and locked after hours. Due to rockfalls in recent years some parts of the area are closed, though the West Face and connecting path (Dave Walsh Track) are declared open by the National Parks and Wildlife Service. ", 
-      "approach":"Head southwest from the carpark and walk down the fire trail, from the Southern 'Five Islands' Lookout (now fenced off) head west down the well worn Dave Walsh track. Continue down until you head down steep gully, where you will find the start of the West Face on your right."
+      "destinationName":"Mount Keira",
+      "destinationFaces":[
+        {
+          "id":1,
+          "name":"west_face",
+          "locationX":-34.4027700,
+          "locationY":150.8539690,
+          "description":"The West Face is probably the most frequently climbed area at Mt Keira. It has a maximum height of 15m with approx. 90climbs. All of the bracketed routes have been replaced with steel ring bolts.", 
+          "access":"The Mount Keira summit park is an easy 15 minute drive from the Wollongong CBD. The park is surrounded by the Illawarra Escarpment State Conversation area and is covered in thick sub-tropical rainforest and eucalypt forest, and is open to the public all year round. Be aware the vehicle gate to the summit park is closed and locked after hours. Due to rockfalls in recent years some parts of the area are closed, though the West Face and connecting path (Dave Walsh Track) are declared open by the National Parks and Wildlife Service. ", 
+          "approach":"Head southwest from the carpark and walk down the fire trail, from the Southern 'Five Islands' Lookout (now fenced off) head west down the well worn Dave Walsh track. Continue down until you head down steep gully, where you will find the start of the West Face on your right."
+        }
+      ]
     }
   ] 
 }

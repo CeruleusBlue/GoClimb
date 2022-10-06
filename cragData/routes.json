@@ -1,8 +1,8 @@
 {
   "routes": [
     {
-      "destinationName":"Mount Keira",
-      "destinationRoutes":[
+      "faceName":"west_face",
+      "faceRoutes":[
         {
           "id":1,
           "name":"Extra Terrestrial Turkey",
