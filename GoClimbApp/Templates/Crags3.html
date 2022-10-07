@@ -21,42 +21,80 @@
     <link rel="stylesheet" href="{% static 'css/owl-carousel/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl-carousel/owl.theme.default.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/YouTubePopUp.css' %}">
+    <style>
+        .mySlides {display:none;}
+    </style>
+
 </head>
 
 <body>
-    <div class="about-image">
-        <a href="{% url 'home' %}"> <img src="{% static 'images/ID.png' %}" style="width: 96px; height: 96px;" alt="" />Customer ID</a>
-    </div>
-    <div class="about-image"style="text-align:center; padding:10px;" >
-        <a><b style="font-size: large;">Mt. Keira </b></a>
-    </div>
+<div class="about-image">
+    <a href="{% url 'home' %}"> <img src="{% static 'images/ID.png' %}" style="width: 96px; height: 96px;" alt="" />Customer ID</a>
+</div>
+
   
 </div>
-<div style="padding:38% ;">
+<br><br>
+<div style="text-align:center ;" >
+    <button style="padding:10px;text-align:center;background-color:  #f04c26;color:black;margin:auto;border-radius: 15px;"><b>We have found 2 crags that <br> match your search !</b></button>
+</div>
+<br>
+    <div style="text-align:center ;">
+    <div class="w3-content w3-display-container">
+      <img style="  display: block; margin-left: auto; margin-right: auto;width: 50%;height: 300px;width:300px ;" class="mySlides" src="{% static 'routeImages\cowboys.jpg' %}">
+      <img style="display: block; margin-left: auto; margin-right: auto;width: 50%;height: 300px;width:300px ;" class="mySlides" src="{% static 'images/cragMoun.jpg' %}">
+      <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+      <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+</div><br><br>
+<div style="background-color:grey ;display: block; margin-left: auto; margin-right: auto;width: 50%;height: auto;width:350px ;font-size: large;">
+<p>
+<b>Destination name: Mt.Keira</b><br>
+<b>Crag name: Extra Terrestrial Turkey </b><br>
+<b>Grade: 20</b><br>
+<b>Description: blab la bla </b><br>
+<b>Bolts: 3</b><br>
+<b>Rating: 1</b><br>
+<b>Length: 7</b><br>
+<b>Ascents: 103 </b><br>
+<b>First Ascent: </b><br>
 
+</p>
 </div>
 
+<div style="text-align: center;">
+  <button style="background-color: #0d80a6;width: 40%;height:40px ; border-radius: 10px;" > <a href="{% url 'Crags4' %}"><b style="color: white;font-size: medium;">Select to route track &nbsp;</b></a></button>
+  </div>
+    
+    <script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+    
+    function plusDivs(n) {
+      showDivs(slideIndex += n);
+    }
+    
+    function showDivs(n) {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      if (n > x.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = x.length}
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+      }
+      x[slideIndex-1].style.display = "block";  
+    }
+    </script>
 
-<div style="width:100%;height:400px;background-color: grey;" >
-  <a style="font-size: 200%; color: black;">Directions</a>
-  <a class="row"> <img src="{% static 'images/up.png' %}" style="width: 40px; height: 40px;"/></a>
-
-
-</div>
-<button><a href="{% url 'Crags4' %}">Next</a></button>
-
-
-
-
-    <br><br><br><br><br>
+    <br><br><br>
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/owl-carousel/owl.carousel.min.js' %}"></script>
     <script src="{% static 'js/owl-carousel/highlight.js' %}"></script>
     <script src="{% static 'js/owl-carousel/app.js' %}"></script>
     <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/YouTubePopUp.jquery.js' %}"></script>
+    <script type="text/javascript" src="engine1/wowslider.js"></script>
+    <script type="text/javascript" src="engine1/script.js"></script>
 </body>
 
 </html>
