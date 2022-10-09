@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from traitlets import default
 
 # Create your models here.    
 class cragDestination(models.Model):
@@ -51,3 +52,8 @@ class MBPost(models.Model):
     title = models.TextField()
     time = models.DateTimeField(primary_key=True)
     FKUserProfile = models.ForeignKey(userProfile, default=None, on_delete=models.CASCADE)
+
+class MBPostLikeStatus(models.Model):
+    FKUserProfile = models.ForeignKey(userProfile, default=None, on_delete=models.CASCADE)
+    FKMBPost = models.ForeignKey(MBPost, default=None, on_delete=models.CASCADE)
+    isLiked = models.BooleanField(default=False)

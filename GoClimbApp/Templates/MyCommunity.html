@@ -65,7 +65,13 @@
                 {% for post in posts %}
                     <img src="{% static 'images/ID.png' %}" style="width: 30px; height: 30px;" alt="" />
                     <li><div class="post-frame">{{post.text}}</div></li>
-                    <a href=""><img style="width: 15px; height: 15px; margin-left: 20%;" src="{% static 'images/heart.png' %}" alt="" /></a>
+                    <a href="/likePost?id={{post.time}}">
+                        {% if getLiked request.user post %}
+                        <img style="width: 15px; height: 15px; margin-left: 20%;" src="{% static 'images/heart.png' %}" alt="" />
+                        {% else %}
+                        <img style="width: 15px; height: 15px; margin-left: 20%;" src="{% static 'images/heart-empty.png' %}" alt="" />
+                    </a>
+
                 {% endfor %}
             </ul>
             <div class="about-image">

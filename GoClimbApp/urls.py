@@ -19,6 +19,7 @@ urlpatterns = [
     #######################################################
     path('MyClimbs', views.myClimbsView.as_view(), name="MyClimbs"),
     path('MyCommunity', views.myCommunityView.as_view(), name="MyCommunity"),
+    path('likePost', views.likePostView.as_view(),name="likePost"),
     path('Settings', views.settingsView.as_view(), name="Settings"),
     path('logout/', views.logoutUser, name="logout"),
 

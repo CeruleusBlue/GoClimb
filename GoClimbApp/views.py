@@ -107,6 +107,13 @@ class myCommunityView(LoginRequiredMixin, View):
         MBPost.objects.create(text=message, title=title, time=time, FKUserProfile=userProfile.objects.get(userID=request.user))
         return self.get(request)
 
+class likePostView(LoginRequiredMixin, View):
+    def get(self, request):
+        id= request.GET.get("id")
+        post = MBPost.objects.get(time=id)
+        post
+        return redirect('MyCommunity')
+
 class settingsView(LoginRequiredMixin, View):
     login_url='signIn'
     template_name = 'Settings.html'
