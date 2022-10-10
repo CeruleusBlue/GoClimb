@@ -203,7 +203,7 @@ class Crags2(LoginRequiredMixin, View):
                 routes = cragRoute.objects.filter(rating__gte=rating, grade__gte=grade, length__gte = 25)
             else:
                 routes = cragRoute.objects.filter(rating__gte=rating, grade__gte=grade, length__lte = 25)
-            return render(request, 'Crags3.html', {'routes':routes})
+            return render(request, 'Crags3.html', {'routes':routes, 'length':len(routes)})
         return render(request, self.template_name)
 class Crags3(LoginRequiredMixin, View):
     login_url='signIn'
