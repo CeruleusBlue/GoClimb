@@ -14,7 +14,7 @@ def getLevel(user : User) -> str:
     return level
 
 @register.simple_tag
-def getLiked(user, post) ->bool:
+def getLiked(user, post):
     isLiked = None
     try:
         isLiked = MBPostLikeStatus.objects.get(

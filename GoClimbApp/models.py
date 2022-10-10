@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from traitlets import default
 
 # Create your models here.    
 class cragDestination(models.Model):
@@ -25,7 +26,7 @@ class cragRoute(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.TextField()
     grade = models.IntegerField()
-    image = models.ImageField(null=True, blank=True, upload_to = "static/images/cragRoutes")
+    image = models.TextField(default="None")
     description = models.TextField()
     bolts = models.IntegerField()
     rating = models.IntegerField()
