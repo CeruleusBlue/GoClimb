@@ -27,7 +27,7 @@ jobs:
         pip install -r "requirements.txt"
     - name: Make Migrations
       run: |
-        python manage.py makemigrations
+        python manage.py makemigrations GoClimbApp
     - name: Run Tests
       run: |
         python manage.py test
