@@ -109,10 +109,20 @@ class myCommunityView(LoginRequiredMixin, View):
 
 class likePostView(LoginRequiredMixin, View):
     def get(self, request):
-        id= request.GET.get("id")
-        post = MBPost.objects.get(time=id)
-        post
-        return redirect('MyCommunity')
+        post = MBPost.objects.get(id=request.GET.get("id"))
+        try:
+            postLikeStatus = MBPostLikeStatus.objects.get(
+            FKUserProfile = userProfile.objects.get(userID=request.user), 
+            FKMBPost = post)
+            postLikeStatus.isLiked = not postLikeStatus.isLiked
+            postLikeStatus.save(update_fields=['isLiked'])
+        except MBPostLikeStatus.DoesNotExist:
+            postLikeStatus = MBPostLikeStatus(
+            FKUserProfile = userProfile.objects.get(userID=request.user), 
+            FKMBPost = post, isLiked = True)
+            postLikeStatus.save()
+        finally:
+            return redirect('MyCommunity')
 
 class settingsView(LoginRequiredMixin, View):
     login_url='signIn'

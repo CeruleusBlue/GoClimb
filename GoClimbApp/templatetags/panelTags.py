@@ -1,5 +1,6 @@
 
 from django import template
+from django.templatetags.static import static
 
 register = template.Library()
 
@@ -13,10 +14,16 @@ def getLevel(user : User) -> str:
     return level
 
 @register.simple_tag
-def getLiked(user: User, post:MBPost) ->bool:
+def getLiked(user, post) ->bool:
+    isLiked = None
     try:
-       return MBPostLikeStatus.objects.get(
+        isLiked = MBPostLikeStatus.objects.get(
             FKUserProfile = userProfile.objects.get(userID=user), 
             FKMBPost = post).isLiked
     except MBPostLikeStatus.DoesNotExist:
-        return False
+        pass
+    finally:
+        if(isLiked):
+          return static('images/heart.png')
+        else:
+          return static('images/heart-empty.png')

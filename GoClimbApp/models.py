@@ -48,9 +48,10 @@ class climbHistory(models.Model):
     FkUserProfile = models.ForeignKey(userProfile, default=None, on_delete=models.CASCADE)
 
 class MBPost(models.Model):
+    id = models.AutoField(primary_key=True)
     text = models.TextField()
     title = models.TextField()
-    time = models.DateTimeField(primary_key=True)
+    time = models.DateTimeField()
     FKUserProfile = models.ForeignKey(userProfile, default=None, on_delete=models.CASCADE)
 
 class MBPostLikeStatus(models.Model):
