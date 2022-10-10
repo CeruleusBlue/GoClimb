@@ -2,7 +2,7 @@ from django.test import Client, TestCase
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
-"""testClient = Client()
+testClient = Client()
 class t1_AuthenticationTests(TestCase):
     userDetails  = {
         'username':'testUser',
@@ -15,7 +15,6 @@ class t1_AuthenticationTests(TestCase):
         response = testClient.post('/signUp', self.userDetails)
         print("SignUp status code: ", response.status_code)
         self.assertEquals(response.status_code, 200)
-
     def test2_SignIn(self):  
         print("Testing SignIn:\n")
         response = testClient.post('/signIn',{ 'username':self.userDetails['username'], 'password':self.userDetails['password1']})
@@ -28,6 +27,6 @@ class t2_URLTests(TestCase):
         for x in self.testURLs:
             print('\n\ntesting URL:/'+ x)
             response = testClient.get("/"+x)
-            self.assertEquals(response.status_code, 200)
-            print('SUCCESS')"""
+            self.assertIn(response.status_code, [200,302])
+            print('SUCCESS')
         
