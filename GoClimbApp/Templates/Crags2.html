@@ -48,26 +48,26 @@
     <div style=" padding-left: 10%;padding-right: 10%;  text-align: center;" >
       <button style="width:auto;height: auto; background-color: #f04c26;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b style="font-size:30px;">Pick your Climb Type</b></button>
     </div>
-
+    <form action="" method="get">
     <div>
       <h1 style="background-color: #aaaaa4; text-align: center;" ><b style="font-size:18px;">Rating</b></h1>
       <div style="text-align:center;font-size:20px;">
-        <input  type="radio" id="specifyColor" name="rating"  value="2+">
+        <input  type="radio" id="specifyColor" name="Rating"  value="2" checked>
           <label for="">2+</label>&emsp;&emsp;&emsp;
-          <input type="radio" id="specifyColor" name="rating"  value="3+">
+          <input type="radio" id="specifyColor" name="Rating"  value="3">
           <label for="">3+</label>&emsp;&emsp;&emsp;
-          <input type="radio" id="specifyColor" name="rating"  value="4+">
+          <input type="radio" id="specifyColor" name="Rating"  value="4">
           <label for="">4+&emsp;&emsp;&emsp;
      </div>
     </div>
     <div>
       <h1 style="background-color: #aaaaa4; text-align: center;" ><b style="font-size:18px;">Grade</b></h1>
       <div style="text-align:center;font-size:20px;">
-          <input  type="radio" id="specifyColor" name="grade" value="15+">
+          <input  type="radio" id="specifyColor" name="Grade" value="15" checked>
           <label for="">15+</label>&emsp;&emsp;&emsp;
-          <input type="radio" id="specifyColor" name="grade" value="20+">
+          <input type="radio" id="specifyColor" name="Grade" value="20">
           <label for="">20+</label>&emsp;&emsp;&emsp;
-          <input type="radio" id="specifyColor" name="grade" value="25+">
+          <input type="radio" id="specifyColor" name="Grade" value="25">
           <label for="">25+&emsp;&emsp;&emsp;
      </div>
     </div>
@@ -75,16 +75,16 @@
   <div>
     <h1 style="background-color: #aaaaa4; text-align: center;" ><b style="font-size:18px;">Rope Length</b></h1>
     <div style="text-align:center;font-size:20px;">
-        <input  type="radio" id="specifyColor" name="Rope Length"   value="Less than 25 m">
+        <input  type="radio" id="specifyColor" name="Rope Length"   value="False" checked>
         <label for="">Less than 25 m</label>&emsp;&emsp;&emsp;
-        <input type="radio" id="specifyColor" name="Rope Length"  value="More than 25 m">
+        <input type="radio" id="specifyColor" name="Rope Length"  value="True">
         <label for="">More than 25 m</label>&emsp;&emsp;&emsp;
    </div>
   </div>
   <div style="text-align: center;">
-  <button style="background-color: #0d80a6;width: 40%;height:40px ; border-radius: 10px;" > <a href="{% url 'Crags3' %}"><b style="color: white;font-size: medium;">Go &nbsp;</b></a></button>
+  <input type="submit" style="background-color: #0d80a6;width: 40%;height:40px ; border-radius: 10px;color: white;font-size: medium;" value="GO"/>
   </div>
-
+  </form>
 
     <br><br><br>
     <script src="{% static 'js/jquery.min.js' %}"></script>

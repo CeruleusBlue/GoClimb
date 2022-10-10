@@ -2,7 +2,7 @@ from django.test import Client, TestCase
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
-testClient = Client()
+"""testClient = Client()
 class t1_AuthenticationTests(TestCase):
     userDetails  = {
         'username':'testUser',
@@ -26,8 +26,8 @@ class t2_URLTests(TestCase):
     testURLs = ['','index', 'home','Crags','MyClimbs','MyCommunity','Settings']
     def test1_URLs(self):
         for x in self.testURLs:
-            print('\n\ntesting Common URL:/'+ x)
+            print('\n\ntesting URL:/'+ x)
             response = testClient.get("/"+x)
             self.assertEquals(response.status_code, 200)
-            print('SUCCESS')
+            print('SUCCESS')"""
         

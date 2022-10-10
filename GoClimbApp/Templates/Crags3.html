@@ -49,18 +49,20 @@
 </div><br><br>
 <div style="background-color:grey ;display: block; margin-left: auto; margin-right: auto;width: 50%;height: auto;width:350px ;font-size: large;">
 <p>
-<b>Destination name: Mt.Keira</b><br>
-<b>Crag name: Extra Terrestrial Turkey </b><br>
-<b>Grade: 20</b><br>
-<b>Description: blab la bla </b><br>
-<b>Bolts: 3</b><br>
-<b>Rating: 1</b><br>
-<b>Length: 7</b><br>
-<b>Ascents: 103 </b><br>
-<b>First Ascent: </b><br>
-
+</div>
 </p>
 </div>
+{% for route in routes %}
+<b>Destination name:    <b>{{route.name}}</b><br>
+<b>Crag name:           <b>{{route.name}}</b><br>
+<b>Grade:               <b>{{route.grade}}</b><br>
+<b>Description:         <b>{{route.description}}</b><br>
+<b>Bolts:               <b>{{route.bolts}}</b><br>
+<b>Rating:              <b>{{route.rating}}</b><br>
+<b>Length:              <b>{{route.length}}</b><br>
+<b>Ascents:             <b>{{route.ascents}}</b><br>
+<b>First Ascent:        <b>{{route.FirstAscent}}</b><br>
+{% endfor %}
 
 <div style="text-align: center;">
   <button style="background-color: #0d80a6;width: 40%;height:40px ; border-radius: 10px;" > <a href="{% url 'Crags4' %}"><b style="color: white;font-size: medium;">Select to route track &nbsp;</b></a></button>

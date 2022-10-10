@@ -12,7 +12,7 @@ urlpatterns = [
     path('Crags', views.cragsView.as_view(), name="Crags"),
     ######################################################
     path('Crags1', views.Crags1.as_view(), name="Crags1"),
-    path('Crags2', views.Crags2, name="Crags2"),
+    path('Crags2', views.Crags2.as_view(), name="Crags2"),
     path('Crags3', views.Crags3, name="Crags3"),
     path('Crags4', views.Crags4, name="Crags4"),
     path('Crags5', views.Crags5, name="Crags5"),

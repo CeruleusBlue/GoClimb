@@ -138,7 +138,7 @@ def Crags(request):
     return render(request,'Crags.html')
 
 class Crags1(LoginRequiredMixin, View):
-    login_url='Crags1'
+    login_url='signIn'
     template_name = 'Crags1.html'
 
 
@@ -187,12 +187,29 @@ class Crags1(LoginRequiredMixin, View):
 
 
 
-def Crags2(request):
-
-    return render(request,'Crags2.html')
-
-def Crags3(request):
-    return render(request,'Crags3.html')
+class Crags2(LoginRequiredMixin, View):
+    login_url='signIn'
+    template_name = 'Crags2.html'
+    def get(self, request):
+        if(len(request.GET)>0):
+            routes = None
+            data = request.GET
+            print(request.GET)
+            rating = int(data['Rating'])
+            grade = int(data['Grade'])
+            length = data['Rope Length']
+            print(rating,grade,length)
+            if(length == 'True'):
+                routes = cragRoute.objects.filter(rating__gte=rating, grade__gte=grade, length__gte = 25)
+            else:
+                routes = cragRoute.objects.filter(rating__gte=rating, grade__gte=grade, length__lte = 25)
+            return render(request, 'Crags3.html', {'routes':routes})
+        return render(request, self.template_name)
+class Crags3(LoginRequiredMixin, View):
+    login_url='signIn'
+    template_name = 'Crags3.html'
+    def get(self, request):
+        return render(request, self.template_name)
 
 def Crags4(request):
     return render(request,'Crags4.html')
