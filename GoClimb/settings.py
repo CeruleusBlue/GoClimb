@@ -80,11 +80,10 @@ WSGI_APPLICATION = 'GoClimb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'GoClimb',
+        'NAME': 'goclimb',
         'USER': 'ceruleus',
-        'PASSWORD': 'AvsunxjMB2H2ydN',
-        'HOST': 'goclimb.mysql.database.azure.com',
-        'PORT': '3306',
+        'PASSWORD': 'password',
+        'HOST': 'dbgoclimb.cbwiy8qdwb5i.ap-southeast-2.rds.amazonaws.com',
     }
 }
 
