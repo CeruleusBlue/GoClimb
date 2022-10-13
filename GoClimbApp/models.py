@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from traitlets import default
-
 # Create your models here.    
 class cragDestination(models.Model):
     id = models.IntegerField(primary_key=True)
