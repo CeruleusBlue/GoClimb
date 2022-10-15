@@ -35,6 +35,8 @@ class cragRoute(models.Model):
     firstAscent = models.TextField()
     FKCragFace = models.ForeignKey(cragFace, default=None, on_delete=models.CASCADE)
 
+   
+
 class cragRouteReview(models.Model):
     id = models.IntegerField(primary_key=True)
     body = models.TextField()
@@ -44,8 +46,8 @@ class userProfile(models.Model):
     level = models.IntegerField(default=1)
 
 class climbHistory(models.Model):
-    id = models.IntegerField(primary_key=True)
     FkUserProfile = models.ForeignKey(userProfile, default=None, on_delete=models.CASCADE)
+    score=models.IntegerField(default=1)
 
 class MBPost(models.Model):
     id = models.AutoField(primary_key=True)

@@ -28,7 +28,23 @@
 <body style="background-color: #ed9c06;">
     <div>
         <div>
-            {%include "UserPanel.html" with user=request.user %}
+            {%include "UserPanel.html" with user=request.user%}
+        </div>
+        <div>
+            <p> {{score}}</p>
+
+
+            {% for climbHistory in climbHistorys %}
+
+
+                <form action="" method="POST" class="btn-block">
+                {% csrf_token %}
+                <input  type="text" name='cragRouteID' value='{{climbHistory.score}}'>
+                
+                </form>
+
+
+            {% endfor %}
         </div>
         <div class="about-image">
             <a href="{% url 'home' %}"> <img src="{% static 'images/medal.png' %}" style="width: 60px; height: 60px;" alt="" /> <a style="font-weight: bold;color: black;">Level: Here the critria</a> </a>

@@ -19,7 +19,7 @@ class t1_AuthenticationTests(TestCase):
         print("Testing SignIn:\n")
         response = testClient.post('/signIn',{ 'username':self.userDetails['username'], 'password':self.userDetails['password1']})
         print("SignIn status code: ", response.status_code)
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, cs)
    
 class t2_URLTests(TestCase):
     testURLs = ['','index', 'home','Crags','MyClimbs','MyCommunity','Settings']

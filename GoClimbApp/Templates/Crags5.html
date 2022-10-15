@@ -25,6 +25,8 @@
 </head>
 
 <body>
+
+  {% load cart %}
   <div>
     <div class="about-image">
         <a href="{% url 'home' %}"> <img src="{% static 'images/ID.png' %}" style="width: 96px; height: 96px;" alt="" />Customer ID</a>
@@ -34,42 +36,29 @@
 
 <div style="width:100%;height: auto;text-align: center;"><img src="{% static 'images/crag 6.jpg' %}"> </div>
 
-<br><br>
-<table>
-<tr style="text-align: center;">
 
-  <td style="text-align: center;">
-    <div class="dropdown">
-      &nbsp;<button style="width: auto;height: auto; background-color: #f04c26;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b style="font-size:30px;">Climb Style &nbsp;</b> 
-      <span style="font-size:30px;" class="caret"></span></button>
-      <ul style="width: 100%;height: auto;" class="dropdown-menu">
-        <li><a href="#">Option 1</a></li>
-        <li><a href="#">Option 2</a></li>
-        <li><a href="#">Option 3</a></li>
-      </ul>
-    </div>
-    </td >
-    <td style="text-align: center;">
-      <div class="dropdown">
-        &nbsp; &nbsp;<button style="width: auto;height: auto; background-color: #f04c26;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b style="font-size:30px;">Climb Level &nbsp;</b>
-        <span  style="font-size:30px;" class="caret"></span></button>
-        <ul style="width: 100%;height: auto;" class="dropdown-menu">
-          <li><a href="#">Option 1</a></li>
-          <li><a href="#">Option 2</a></li>
-          <li><a href="#">Option 3</a></li>
-        </ul>
-      </div>
-      </td>
-
-</tr>
-</table>
-<br><br><br>
   
-  <div style="text-align: center;padding: 5%;">
-  <button style="background-color: #f04c26;width: 50%;height:40px ;border-radius: 25px;" > <a href="{% url 'Crags3' %}"><b style="color: white;font-size: medium;">Log Climb</b></a></button>
-  </div>
 
 
+    {% for route in routes %}
+
+
+
+    <h1>{{route.id}}</h1>
+    <h1>{{route.name}}</h1>
+    <h1>{{route.grade}}</h1>
+
+
+    <form action="" method="POST" class="btn-block">
+      {% csrf_token %}
+      <input  type="text" name='cragRouteID' value='{{route.id}}'>
+      <input  type="text" name='cragRouteGrade' value='{{route.grade}}'>
+      <input type="submit" class="float-right btn btn-light  form-control"
+        value="Log Climb">
+    </form>
+
+
+    {% endfor %}
     <br><br><br><br><br>
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>

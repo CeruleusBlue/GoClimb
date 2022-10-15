@@ -13,6 +13,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 import datetime
 
+from GoClimbApp.models import climbHistory, cragRoute
+
 from .models import *
 from .forms import *
 
@@ -20,6 +22,7 @@ from .forms import *
 
 import urllib.request
 import json
+
 
 class indexView(View):
     template_name = 'index.html'
@@ -51,6 +54,7 @@ class signInView(View):
             return self.get(request)
         
 def logoutUser(request):
+
         logout(request)
         return redirect('signIn')
 
@@ -85,8 +89,10 @@ class cragsView(LoginRequiredMixin, View):
 class myClimbsView(LoginRequiredMixin, View):
     login_url='signIn'
     template_name = 'MyClimbs.html'
+    prevScore = 5
     def get(self, request):
-        return render(request, self.template_name)
+        self.prevScore =  self.prevScore + int(request.GET["p"])
+        return render(request, self.template_name,{'score':int(request.GET["p"])+self.prevScore})
 
 class myCommunityView(LoginRequiredMixin, View):
     login_url='signIn'
@@ -214,6 +220,21 @@ class Crags3(LoginRequiredMixin, View):
 def Crags4(request):
     return render(request,'Crags4.html')
 
-def Crags5(request):
-    return render(request,'Crags5.html')
+class Crags5(LoginRequiredMixin, View):
+
+    login_url='signIn'
+    template_name = 'Crags5.html'
+
+    def post(self, request):
+        self.cragRoute = request.POST.get('cragRouteID')
+        self.cragRouteGrade = request.POST.get('cragRouteGrade')
+        return redirect('MyClimbs/?p=%s'%self.cragRouteGrade)
+
+        
+         
+    def get(self, request):
+        self.routes = cragRoute.objects.all()
+        context = {"routes":self.routes}
+        return render(request, self.template_name, context)
+        
 ###########################################################
