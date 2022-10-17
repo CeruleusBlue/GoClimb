@@ -35,28 +35,29 @@
 <div style="width:100%;height: auto;text-align: center;"><img src="{% static 'images/crag 6.jpg' %}"> </div>
 
 <br><br>
+<form method="get">
 <table>
 <tr style="text-align: center;">
 
   <td style="text-align: center;">
     <div class="dropdown">
-      &nbsp;<button style="width: auto;height: auto; background-color: #f04c26;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b style="font-size:30px;">Climb Style &nbsp;</b> 
+      &nbsp;<button style="width: auto;height: auto; background-color: #f04c26;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b style="font-size:30px;">Climb Grade &nbsp;</b> 
       <span style="font-size:30px;" class="caret"></span></button>
       <ul style="width: 100%;height: auto;" class="dropdown-menu">
-        <li><a href="#">Option 1</a></li>
-        <li><a href="#">Option 2</a></li>
-        <li><a href="#">Option 3</a></li>
+        <li>    <input type="radio" id="gradeRadio" name="grade" value="1" ><label for="">Beginner</label></li>
+        <li>    <input type="radio" id="gradeRadio" name="grade" value="2" ><label for="">Intermediate</label></li>
+        <li>    <input type="radio" id="gradeRadio" name="grade" value="3" ><label for="">Advanced</label></li>
       </ul>
     </div>
     </td >
     <td style="text-align: center;">
       <div class="dropdown">
-        &nbsp; &nbsp;<button style="width: auto;height: auto; background-color: #f04c26;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b style="font-size:30px;">Climb Level &nbsp;</b>
+        &nbsp; &nbsp;<button style="width: auto;height: auto; background-color: #f04c26;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b style="font-size:30px;">Climb Rating &nbsp;</b>
         <span  style="font-size:30px;" class="caret"></span></button>
         <ul style="width: 100%;height: auto;" class="dropdown-menu">
-          <li><a href="#">Option 1</a></li>
-          <li><a href="#">Option 2</a></li>
-          <li><a href="#">Option 3</a></li>
+          <li>    <input type="radio" id="gradeRadio" name="rating" value="1" ><label for="">Beginner</label></li>
+          <li>    <input type="radio" id="gradeRadio" name="rating" value="2" ><label for="">Intermediate</label></li>
+          <li>    <input type="radio" id="gradeRadio" name="rating" value="3" ><label for="">Advanced</label></li>
         </ul>
       </div>
       </td>
@@ -64,10 +65,12 @@
 </tr>
 </table>
 <br><br><br>
-  
+
+
   <div style="text-align: center;padding: 5%;">
-  <button style="background-color: #f04c26;width: 50%;height:40px ;border-radius: 25px;" > <a href="{% url 'Crags3' %}"><b style="color: white;font-size: medium;">Log Climb</b></a></button>
+  <input type="submit" style="background-color: #f04c26;width: 50%;height:40px ;border-radius: 25px;" value="Log Climb" >
   </div>
+</form>
 
 
     <br><br><br><br><br>

@@ -2,6 +2,9 @@
 
     #import 
 
+from math import log
+import datetime
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View
@@ -11,14 +14,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-import datetime
-
 from .models import *
 from .forms import *
-
-
-
-import urllib.request
 import json
 
 class indexView(View):
@@ -214,6 +211,17 @@ class Crags3(LoginRequiredMixin, View):
 def Crags4(request):
     return render(request,'Crags4.html')
 
-def Crags5(request):
-    return render(request,'Crags5.html')
+class Crags5(LoginRequiredMixin, View):
+    login_url='signIn'
+    template_name = 'Crags5.html'
+    def get(self, request):
+        print(request.GET)
+        if(len(request.GET)==2):
+            grade = int(request.GET['grade'])
+            rating = int(request.GET['rating'])
+            increase = int(log(grade*rating))
+            profile = userProfile.objects.get(userID=request.user)
+            profile.level+=increase
+            profile.save(update_fields=["level"])
+        return render(request, self.template_name)
 ###########################################################
