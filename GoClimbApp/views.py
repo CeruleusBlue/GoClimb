@@ -16,7 +16,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import *
 from .forms import *
-import json
+import json, urllib
 
 class indexView(View):
     template_name = 'index.html'
