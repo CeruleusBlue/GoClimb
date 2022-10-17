@@ -60,13 +60,16 @@
       }
   </script>
     <br><br>
-<<<<<<< HEAD
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeg0ZHofiqvXoMg6yAZtZEYJBSj0Xukzw&callback=myMap"></script>
     <div>
     <table>
         <tr>
           <td><img style="padding:20px ;" src="{% static 'images\warning.png' %}" alt="warning" ></td>
-          <td style="padding:10px;text-align:center;background-color: black;color: #f04c26;margin:auto;border-radius: 15px;"><h3> Potential Hazard of <br> landslide and muddy tracks <br> due to 60% rain. </h3></td>
+          <td style="padding:10px;text-align:center;background-color: black;color: #f04c26;margin:auto;border-radius: 15px;"><h3> Potential Hazards:
+            <br>
+            {{windWarning}}
+            {{rainWarning}}
+          </td>
         </tr>
       </table>
    </div>
@@ -76,12 +79,6 @@
         <img src="{% static 'images\sun.png' %}" alt="" style="width:50px;height:50px;margin-right: 5%;">
         <img src="{% static 'images\storm.png' %}" alt="" style="width:50px;height:50px;margin-right: 5%;">
     </div>
-=======
-    <div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeg0ZHofiqvXoMg6yAZtZEYJBSj0Xukzw&callback=myMap"></script>
-      
-</div>
->>>>>>> weather
     <br><br><br><br><br>
 
     <br /><br /> <br>
@@ -100,8 +97,6 @@
               src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
           <h4><span class="badge badge-primary">Description : </span> {{description}}</h4>
           <h4><span class="badge badge-primary">Wind Speed :</span> {{wind}}</h4>
-          <h4><span class="badge badge-primary">Wind Hazard! :</span> {{windWarning}}</h4>
-          <h4><span class="badge badge-primary">Rain Hazard! :</span> {{rainWarning}}</h4>
 
         </div>
 
