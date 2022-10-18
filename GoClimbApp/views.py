@@ -144,16 +144,10 @@ class Crags1(LoginRequiredMixin, View):
 
         city = 'Wollongong'
 
-        source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q=' +
-                                            city + '&units=metric&appid=6e1079025f4832f4f4947ebbf8276420').read()
+        source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q=Wollongong&units=metric&appid=6e1079025f4832f4f4947ebbf8276420').read()
         list_of_data = json.loads(source)
 
 
-
-       # if int(list_of_data['rain']['3h']) > 5:
-          #  warningData["windWarning"] = "Wind Hazard!"
-            
-        
 
         data = {
             "temp": str(list_of_data['main']['temp']) + ' °C',
@@ -164,11 +158,15 @@ class Crags1(LoginRequiredMixin, View):
             'icon': list_of_data['weather'][0]['icon'],
             "wind": str(list_of_data['wind']['speed']) + ' m/s'
         }
-        print(data)
+        
 
         
-        if float(list_of_data['wind']['speed']) > 4:
+        if float(list_of_data['wind']['speed']) > 2:
             data["windWarning"] = 'Wind Hazard!'
+        
+
+        if str(list_of_data['weather'][0]['main']) == 'Clouds':
+            data["RainForecasted"] = 'Rain Forecasted!'
 
         if str(list_of_data['weather'][0]['main']) == 'Rain':
             data["rainWarning"] = 'Rain Hazard!'
