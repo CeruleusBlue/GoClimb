@@ -30,8 +30,16 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="login-wrap p-0">
 
+			    
+		<!-- Sign up form -->
+			    
                         <form method="POST" action="#" class="signin-form">
+				
+				<!--csrf token allows safe transmission of data and protects from Cross-site request forgery attacks -->
                             {%csrf_token %}
+				
+				
+				<!-- User sign in form requiring username and password for successful login -->
                             <div class="form-group">
                                 <input type="text" name="username" class="form-control" placeholder="Username" required>
                             </div>
@@ -43,6 +51,8 @@
                                 <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
                             </div>
 
+				
+			<!-- displays messages in case of incorrect user login information-->
                             {% for message in messages %}
                                 <p id="messages">{{message}}</p>
                             {% endfor %}
@@ -66,7 +76,7 @@
                         <div class="w-100 text-center">
                             <button style="background-color:#F04C26 ;border-radius: 10px; "> <a href="{% url 'signUp' %}" style="color: #000;"> <b> Sign Up</b> </a> </button>
                         </div>
-
+			<!-- If any validation error arise while sign in a user, such as wrong password, a form error containg the error message is displayed -->
                          {{form.errors}}
 
                     </div>
