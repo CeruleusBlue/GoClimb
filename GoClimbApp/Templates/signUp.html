@@ -29,11 +29,15 @@
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-4">
                     <div class="login-wrap p-0">
+			    
+			    
+		      <!-- Sign Up form -->
                         <form method= "POST" action="">
+				
+			<!--csrf token allows safe transmission of data and protects from Cross-site request forgery attacks -->
                             {%csrf_token %}
-                            <! this token allows Django to handle the data upon submission>
                         
-                        
+                        <!-- required information for a user to sign in are: preferred username, email address and preferred password -->
                             <div class="form-group">
                                 {{form.username}}
                             </div>
@@ -64,6 +68,7 @@
                             </div>
                         </form>
                         
+		<!-- If any validation error arise while sign in a user, such as wrong password, a form error containg the error message is displayed -->
                         {{form.errors}}
                         <div class="w-100 text-center">
                             <button style="background-color:#F04C26 ;border-radius: 10px; "> <a href="{% url 'signIn' %}" style="color: #000;"> <b> Sign In</b> </a> </button>
