@@ -90,11 +90,13 @@
     <script type="text/javascript" src="{% static 'signIn/js/YouTubePopUp.jquery.js' %}"></script>
 
 
-
+	<!-- Creating a django user form from the input values user provide -->
 	<script>
 		var form_fields = document.getElementsByTagName('input')
 		for (var field in form_fields){
 			form_fields[field].className += 'form-control'
+	
+
             fieldName =''
             if(field==1)
                 fieldName = 'Username'
@@ -104,6 +106,8 @@
                 fieldName = 'Password'
             if(field==4)
                 fieldName = 'Confirm Password'
+			
+	<!-- the input fields are given a placeholder named the value it takes -->
             form_fields[field].placeholder = fieldName
 		}
 	</script>
