@@ -89,8 +89,8 @@
     <script src="{% static 'signIn/js/jquery.fancybox.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'signIn/js/YouTubePopUp.jquery.js' %}"></script>
 
+	<!-- assigning placeholder to the input fields according to the value it takes -->
 
-	<!-- Creating a django user form from the input values user provide -->
 	<script>
 		var form_fields = document.getElementsByTagName('input')
 		for (var field in form_fields){
@@ -107,7 +107,6 @@
             if(field==4)
                 fieldName = 'Confirm Password'
 			
-	<!-- the input fields are given a placeholder named the value it takes -->
             form_fields[field].placeholder = fieldName
 		}
 	</script>
