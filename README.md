@@ -14,6 +14,11 @@ Pre-Requisites
     </s>
     7. pillow<br>
     8. mysqlclient
+    
+    
+    For unit testing install: 
+    1. pytest 
+    2. pytest-django
 </div>
 
 All of these can be installed through the python package manager using the pip command.
