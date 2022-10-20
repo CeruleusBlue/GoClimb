@@ -16,9 +16,16 @@ Pre-Requisites
     8. mysqlclient
     
     
+    
     For unit testing install: 
     1. pytest 
     2. pytest-django
+    
+    For running the test cases:
+    
+    python manage.py test
+    
+    
 </div>
 
 All of these can be installed through the python package manager using the pip command.
