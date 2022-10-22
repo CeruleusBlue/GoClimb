@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Homepage</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <!-- For Font style -->
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700,800" rel="stylesheet">
+  <!-- Owl Stylesheets -->
+  <link rel="stylesheet" href="{% static 'css/owl-carousel/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl-carousel/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+  <style>
+    .mySlides {
+      display: none;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div>
+    {%include "UserPanel.html" with user=request.user%}
+  </div>
+
+
+
+  </div>
+  <br><br>
+  
+  <div class=" d-flex justify-content-center" >
+    <div class=" card text-white" style="background-color:orange;border-radius: 15px; ">
+      <div class=" card-body">
+        <h4 style=" color: black; border-radius: 15px; ">We
+          have found {{length}} crags that <br> match your search!</h4>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div style="text-align:center ;">
+    <div class="w3-content w3-display-container">
+      
+      {% for img in imgs %}
+      <img id="img" style="display: block; margin-left: auto; margin-right: auto;width: 50%;height: 300px;width:300px ;"
+        class="mySlides" src="{%static img.image %}">
+        {% endfor %}
+
+      <!-- <img style="  display: block; margin-left: auto; margin-right: auto;width: 50%;height: 300px;width:300px ;"
+        class="mySlides" src="{% static 'routeImages\cowboys.jpg' %}">
+       -->
+      
+      <button class="w3-button w3-black w3-display-left" style="background-color: orange; border-radius: 25px;" onclick="minusDivs()">&#10094;</button>
+      <button id="plus" class="w3-button w3-black w3-display-right" style="background-color: orange; border-radius: 25px;" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+  </div><br><br>
+
+  </p>
+  </div>
+
+  
+  <div id="demo" class="container" style="background-color: gray;border-radius: 25px; color: black;margin-top: 3px; ">
+    <h5 style="margin-top: 4px;">Crag name:</h5>
+    <p id="demo1" style="color: white;"></p>
+
+    <h5 style="margin-top: 4px;">Grade:</h5>
+    <p id="demo2" style="color: white;"></p>
+
+    <h5 style="margin-top: 4px;">Description:</h5>
+    <p id="demo3" style="color: white;"></p>
+
+    <h5 style="margin-top: 4px;">Bolts :</h5>
+    <p id="demo4" style="color: white;"></p>
+
+    <h5 style="margin-top: 4px;">Rating:</h5>
+    <p id="demo5" style="color: white;"></p>
+
+    <h5 style="margin-top: 4px;">Length :</h5>
+    <p id="demo6" style="color: white;"></p>
+
+    <h5 style="margin-top: 4px;">Ascents:</h5>
+    <p id="demo7" style="color: white;"></p>
+
+    <h5 style="margin-top: 4px;">First Ascen:</h5>
+    <p id="demo8" style="color: white;"></p>
+                
+                    
+  </div>
+
+
+
+ 
+  <!-- {% for route in routes %}
+<img src="{%static route.image %}" style="width: 96px; height: 96px;" alt="" />
+<b>Destination name:    <b>{{route.name}}</b><br>
+<b>Crag name:           <b>{{route.name}}</b><br>
+<b>Grade:               <b>{{route.grade}}</b><br>
+<b>Description:         <b>{{route.description}}</b><br>
+<b>Bolts:               <b>{{route.bolts}}</b><br>
+<b>Rating:              <b>{{route.rating}}</b><br>
+<b>Length:              <b>{{route.length}}</b><br>
+<b>Ascents:             <b>{{route.ascents}}</b><br>
+<b>First Ascent:        <b>{{route.firstAscent}}</b><br>
+{% endfor %} -->
+
+  <div style="text-align: center;">
+    <button style="background-color: #0d80a6;width: 40%;height:40px ; border-radius: 10px; margin-top: 4px;"> <a
+        href="{% url 'Crags4' %}"><b style="color: white;font-size: medium;">Select to route track
+          &nbsp;</b></a></button>
+  </div>
+
+  <script>
+    var x = document.getElementsByClassName("mySlides");
+    let actuals = {{ routes| safe }};
+    var slideIndex = 0;
+    var i=0;
+    // showDivs(slideIndex);
+    showdis(i)
+
+    function plusDivs(n) {
+      if(i<actuals.length-1  && i<x.length )
+      {
+        i++;
+        showDivs(slideIndex += 1);
+        showdis(i);
+      }
+      
+    }
+    function minusDivs() {
+      if(i>0)
+      {
+        i--;
+        showDivs(slideIndex -= 1);
+        showdis(i);
+      }
+      
+    }
+
+    function showDivs(n) {
+
+     
+      var i;
+      
+      if (n > x.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = x.length }
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      x[slideIndex - 1].style.display = "block";
+      
+    }
+
+    
+    
+    function showdis(n) {
+      document.getElementById("demo1").innerHTML = actuals[n]['name'];
+      document.getElementById("demo2").innerHTML = actuals[n]['grade'];
+      document.getElementById("demo3").innerHTML = actuals[n]['description'];
+      document.getElementById("demo4").innerHTML = actuals[n]['bolts'];
+      document.getElementById("demo5").innerHTML = actuals[n]['rating'];
+      document.getElementById("demo6").innerHTML = actuals[n]['length'];
+      document.getElementById("demo7").innerHTML = actuals[n]['ascents'];
+      document.getElementById("demo8").innerHTML = actuals[n]['firstAscent'];
+      
+      
+      // var p1='"';
+      // p2=p1.concat("{% static '");
+      
+      // var re =p2.concat(actuals[n]['image']);
+      // var fre= re.concat("' %}");
+      // fre= fre.concat('"');
+      // document.getElementById("img").src=fre;
+      // console.log(fre);
+    }
+    window.onload = function() {
+      slideIndex -= 1;
+      var pb = document.getElementById("plus");
+      pb.click();
+    }
+    
+  </script>
+
+  <br><br><br>
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/owl-carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/owl-carousel/highlight.js' %}"></script>
+  <script src="{% static 'js/owl-carousel/app.js' %}"></script>
+  <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+  <script type="text/javascript" src="engine1/wowslider.js"></script>
+  <script type="text/javascript" src="engine1/script.js"></script>
+</body>
+
+</html>

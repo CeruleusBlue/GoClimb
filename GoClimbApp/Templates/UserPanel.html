@@ -1,0 +1,44 @@
+{% load static %}
+{% load panelTags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+       <div class="about-image" style="background-color: black; margin-top: 20px;">
+        <div>
+
+            <span colspan="4" style="margin-left: 10%;">
+                <span><a href="{% url 'home' %}"> <img src="{% static 'images/ID.png' %}"
+                            style="width: 5%; height: 5%;display: inline-block; " alt="" /></a></span>
+                <span>
+                    <h3 style="color: goldenrod ;display: inline-block; margin-top: 2px;">Hi {{user}}!</h3>
+                </span>
+            </span>
+
+
+
+            
+            <span colspan="3" style="margin-left: 40%;">
+                <span><img src="{% static 'images/coinr.png' %}"
+                        style="width: 20px; height: 20px; display: inline-block;" /></span>
+                <span>
+                    <h6 style="color: goldenrod ;display: inline-block; ">{% getLevel user %}</h6>
+                </span>
+            </span>
+            <span><a class="btn" style="margin-left: 2%; background-color: orange;" href="{% url 'logout' %}"> Logout </a></span>
+            
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
