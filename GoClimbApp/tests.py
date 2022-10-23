@@ -642,7 +642,7 @@ class Crag5Test(TestCase):
         prevLevel = prevProfile.level
         print("prevLevel: ", prevLevel)
 
-        response = self.client.get(reverse('Crags5') + '?grade=3&rating=3')
+        response = self.client.get(reverse('Crags5') + '?grade=2&rating=20')
 
         currentProfile = userProfile.objects.get(userID=user)
         currentLevel = currentProfile.level
