@@ -8,7 +8,6 @@
         <div class="about-image">
             <a href="{% url 'Settings' %}"> <img src="{% static 'images/ID.png' %}" style="width: 96px; height: 96px;" alt="" />Hello, {{user}}!</a>
             <br>
-            <span>{% getLevel user %}</span>
             <br>
             <span><a href="{% url 'logout' %}"> Logout </a></span>
         </div>

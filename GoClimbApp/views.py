@@ -15,6 +15,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import *
+from .models import userProfile
 from .forms import *
 import json, urllib
 
