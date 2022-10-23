@@ -584,6 +584,8 @@ class Crags4Test(TestCase):
     def testing_that_all_users_can_access_Crags4(self):
         print("\nTesting that all users can access Crags4 page")
 
+        create_user()
+        self.client.login(username=dummyTestUsername, password=dummyTestPassword)
         response = self.client.get(reverse('Crags4'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "Crags4.html")
@@ -642,14 +644,16 @@ class Crag5Test(TestCase):
         prevLevel = prevProfile.level
         print("prevLevel: ", prevLevel)
 
-        response = self.client.get(reverse('Crags5') + '?grade=3&rating=3')
+        response = self.client.get(reverse('Crags5') + '?Rating=2&Grade=15')
+
+        #why is grade a problem?
 
         currentProfile = userProfile.objects.get(userID=user)
         currentLevel = currentProfile.level
         print("currentLevel: ", currentLevel)
 
-        self.assertEqual(int(log(3*3)) + prevLevel, int(currentLevel))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'Crags5.html')
+        self.assertEqual(int(log(2*15)) + prevLevel, int(currentLevel))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/MyClimbs')
         cleanup()
         print("SUCCESS")
