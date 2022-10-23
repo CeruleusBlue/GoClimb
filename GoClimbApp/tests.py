@@ -10,6 +10,9 @@ from .views import Crags1
 import urllib.request
 # import io
 from .models import userProfile
+from .models import MBPost
+from .models import MBPostLikeStatus
+import datetime
 from math import log
 
 testClient = Client()
@@ -18,6 +21,8 @@ dummyTestUsername = "user"
 dummyTestPassword = "password"
 dummyTestemail = "user@example.com"
 
+
+#Method to create a dummy user in the test database
 def create_user():
     try:
         user = User.objects.create_user(username=dummyTestUsername, email=dummyTestemail,password=dummyTestPassword)
@@ -27,6 +32,7 @@ def create_user():
     except:
         pass
 
+# Method to delete the created user from test database
 def cleanup():
     try:
         user = User.objects.get_by_natural_key(dummyTestUsername)
@@ -35,6 +41,28 @@ def cleanup():
             if not (profile is None):
                 profile.delete()
             user.delete()
+    except:
+        pass
+
+#Method to create a dummy post in the test database and return the post object
+def create_post(user):
+    try:
+        message = "Test Message"
+        title = "Test Title"
+        time = datetime.datetime.now()
+        NewPost = MBPost.objects.create(text=message, title=title, time=time, FKUserProfile=userProfile.objects.get(userID=user))
+        return NewPost
+    except:
+        return False
+
+# Method to delete the created post from test database
+def cleanupPost():
+    try:
+        posts = MBPost.objects.all().order_by('-time')
+        for post in posts:
+            if not (post is None):
+                print("Cleaning Dummy Post", post)
+                post.delete()
     except:
         pass
 
@@ -259,6 +287,215 @@ class cragsViewTest(TestCase):
         cleanup()
 
         print("SUCCESS")
+
+#myClimbsView Test yours to write
+
+
+class myCommunityViewTest(TestCase):
+
+    def test_should_redirect_anonymous_user_to_signin_page(self):
+
+        print("\nTesting that anonymous user is redirected to signin page when requesting myCommunity")
+
+        response = self.client.get(reverse('MyCommunity'))
+        self.assertEqual(response.status_code, 302)
+
+        print("SUCCESS")
+
+    def test_should_give_access_to_myCommunity_page(self):
+
+        print("\nTesting that authenticated user can access myCommunity page")
+
+        create_user()
+
+        self.client.login(username=dummyTestUsername, password=dummyTestPassword)
+        response = self.client.get(reverse('MyCommunity'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'MyCommunity.html')
+
+        cleanup()
+
+        print("SUCCESS")
+    
+    def test_should_create_new_post(self):
+        
+        print("\nTesting that authenticated user can create new post")
+
+        #Fetching the oldPost Object and Storing it in a variable
+        oldPosts = MBPost.objects.all().order_by('-time')
+        oldPostCount = oldPosts.count()
+        #Printing the oldPost Object and number of posts
+        print("oldPosts", oldPosts, oldPosts.count())
+
+        create_user()
+        self.client.login(username=dummyTestUsername, password=dummyTestPassword)
+        # Here user is authenticated and is creating a new post
+
+        #Requesting with post data to Create a new post
+        response = self.client.post('/MyCommunity',{'message':'testPost', 'title':'testTitle'})
+
+        #Fetching the newPosts Object and Storing it in a variable
+        newPosts = MBPost.objects.all().order_by('-time')
+
+        #Printing the newPosts information
+        print("newPosts ID:", newPosts.first().id, "New Post Title: ", newPosts.first().title, "New Post Text :",  newPosts.first().text, newPosts.first().time, newPosts.count())
+        
+       
+
+        #Checking if the number of posts has increased
+        #new post count should be greater than old post count
+        self.assertGreater(newPosts.count(), oldPostCount)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'MyCommunity.html')
+        cleanupPost()
+        cleanup()
+        
+        print("SUCCESS")
+
+
+class likePostViewTest(TestCase):
+
+    def test_should_redirect_anonymous_user_to_signin_page(self):
+
+        print("\nTesting that anonymous user is redirected to signin page when requesting likePost")
+
+        response = self.client.get(reverse('likePost'))
+        self.assertEqual(response.status_code, 302)
+
+        print("SUCCESS")
+
+    # This will check if the liked status is added to the post and it should be true
+
+    # The scenerio is User didn't liked this post earliar nor user liked and than disliked the post. That User did not at all interacted with the post like status
+    def test_should_add_the_like_status_for_given_post_id_to_true(self):
+
+        print("\nTesting that authenticated user can like a post")
+
+        create_user()
+
+        # Store the user for later use
+        user = User.objects.get_by_natural_key(dummyTestUsername)
+
+        #login using the created user credenrial
+        self.client.login(username=dummyTestUsername, password=dummyTestPassword)
+
+        #Create a post for the the logged in user 
+        MBCreatedPost = create_post(user)
+
+        #We will pass this post id while requesting likePost
+        oldPostID = MBCreatedPost.id
+
+        #Requesting with post id to like the post
+        response = self.client.get(reverse('likePost') + '?id='+str(oldPostID))
+
+        #Fetching the new post like status Object and Storing it in a variable
+        newPostLikeStatus = MBPostLikeStatus.objects.get(  
+            FKUserProfile = userProfile.objects.get(userID=user), 
+            FKMBPost = MBCreatedPost)
+
+        # New isLiked status should be true
+        self.assertTrue(newPostLikeStatus.isLiked)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/MyCommunity')
+
+        cleanupPost()
+        cleanup()
+        print("SUCCESS")
+    
+
+    # This will check if the liked status is changed for the post from true to false
+
+    # The scenerio is User liked this post earliar and now user is unliking the post
+    def test_should_update_like_status_for_given_post_id_to_false(self):
+
+        print("\nTesting that authenticated user can unlike a post")
+
+        create_user()
+
+        # Store the user for later use
+        user = User.objects.get_by_natural_key(dummyTestUsername)
+
+        #login using the created user credenrial
+        self.client.login(username=dummyTestUsername, password=dummyTestPassword)
+
+        #Create a post for the the logged in user 
+        MBCreatedPost = create_post(user)
+
+        #We will pass this post id while requesting likePost
+        oldPostID = MBCreatedPost.id
+
+        # Here we are making the created post liked by the user before checking the unlike functionality works or not
+        postLikeStatus = MBPostLikeStatus(
+            FKUserProfile = userProfile.objects.get(userID=user), 
+            FKMBPost = MBCreatedPost, isLiked = True)
+        postLikeStatus.save()
+
+        #Requesting with post id to unlike the post
+        response = self.client.get(reverse('likePost') + '?id='+str(oldPostID))
+
+        #Fetching the new post like status Object and Storing it in a variable
+        newPostLikeStatus = MBPostLikeStatus.objects.get(  
+            FKUserProfile = userProfile.objects.get(userID=user), 
+            FKMBPost = MBCreatedPost)
+
+        # New isLiked status should be false
+        self.assertFalse(newPostLikeStatus.isLiked)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/MyCommunity')
+
+        cleanupPost()
+        cleanup()
+        print("SUCCESS")
+
+
+    # This will check if the liked status is changed for the post from false to true
+
+    # The scenerio is User liked this post earliar and then unliked it and now user is liking the post again
+    def test_should_update_like_status_for_given_post_id_from_false_to_true(self):
+            
+            print("\nTesting that authenticated user can like a post that was unliked earliar")
+    
+            create_user()
+    
+            # Store the user for later use
+            user = User.objects.get_by_natural_key(dummyTestUsername)
+    
+            #login using the created user credenrial
+            self.client.login(username=dummyTestUsername, password=dummyTestPassword)
+    
+            #Create a post for the the logged in user 
+            MBCreatedPost = create_post(user)
+    
+            #We will pass this post id while requesting likePost
+            oldPostID = MBCreatedPost.id
+    
+            # Here we are making the created post unliked by the user before checking the like functionality works or not
+            postLikeStatus = MBPostLikeStatus(
+                FKUserProfile = userProfile.objects.get(userID=user), 
+                FKMBPost = MBCreatedPost, isLiked = False)
+            postLikeStatus.save()
+    
+            #Requesting with post id to unlike the post
+            response = self.client.get(reverse('likePost') + '?id='+str(oldPostID))
+    
+            #Fetching the new post like status Object and Storing it in a variable
+            newPostLikeStatus = MBPostLikeStatus.objects.get(  
+                FKUserProfile = userProfile.objects.get(userID=user), 
+                FKMBPost = MBCreatedPost)
+    
+            # New isLiked status should be true
+            self.assertTrue(newPostLikeStatus.isLiked)
+    
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(response.url, '/MyCommunity')
+    
+            cleanupPost()
+            cleanup()
+            print("SUCCESS")
+
 
 class Craig1Test(TestCase):
     
