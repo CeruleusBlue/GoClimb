@@ -646,7 +646,6 @@ class Crag5Test(TestCase):
 
         response = self.client.get(reverse('Crags5') + '?Rating=2&Grade=15')
 
-        #why is grade a problem?
 
         currentProfile = userProfile.objects.get(userID=user)
         currentLevel = currentProfile.level
