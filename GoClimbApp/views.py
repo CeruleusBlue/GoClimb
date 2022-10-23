@@ -102,7 +102,8 @@ class myClimbsView(LoginRequiredMixin, View):
     login_url='signIn'
     template_name = 'MyClimbs.html'
     def get(self, request):
-        return render(request, self.template_name)
+        print(request.GET)
+        return render(request, self.template_name, {'level': userProfile.objects.get(userID=request.user).level})
 
 class myCommunityView(LoginRequiredMixin, View):
     login_url='signIn'
@@ -200,8 +201,6 @@ class Crags1(LoginRequiredMixin, View):
             data["rainWarning"] = 'Rain Hazard!'
             
         
-        print(data)
-
         return render(request, self.template_name, data)
 
     def post(self, request):
@@ -217,11 +216,9 @@ class Crags2(LoginRequiredMixin, View):
         if(len(request.GET)>0):
             routes = None
             data = request.GET
-            print(request.GET)
             rating = int(data['Rating'])
             grade = int(data['Grade'])
             length = data['Rope Length']
-            print(rating,grade,length)
             if(length == 'True'):
                 routes = cragRoute.objects.filter(rating__gte=rating, grade__gte=grade, length__gte = 25)
             else:
@@ -229,7 +226,6 @@ class Crags2(LoginRequiredMixin, View):
 
             serialize_routes=CragRouteSerializer(routes,many=True)
             data =  serialize_routes.data
-            print(data[1])
             
             # for path in routes:
             result=json.dumps(serialize_routes.data)            
@@ -248,14 +244,15 @@ class Crags5(LoginRequiredMixin, View):
     login_url='signIn'
     template_name = 'Crags5.html'
     def get(self, request):
-        print(request.GET)
         if(len(request.GET)==2):
-            grade = int(request.GET['grade'])
-            rating = int(request.GET['rating'])
+            grade = int(request.GET['Grade'])
+            rating = int(request.GET['Rating'])
             increase = int(log(grade*rating))
             profile = userProfile.objects.get(userID=request.user)
+            previousLevel = profile.level
             profile.level+=increase
             profile.save(update_fields=["level"])
+            return redirect('MyClimbs')
         return render(request, self.template_name)
         
 def SavedCrag(request):

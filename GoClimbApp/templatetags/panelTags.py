@@ -9,9 +9,8 @@ from ..models import MBPost, MBPostLikeStatus, userProfile
 
 
 @register.simple_tag
-def getLevel(user : User) -> str:
-    level = "Level "+str(userProfile.objects.get(userID=user).level)
-    return level
+def getLevel(user : User):
+    return userProfile.objects.get(userID=user).level
 
 @register.simple_tag
 def getLiked(user, post):

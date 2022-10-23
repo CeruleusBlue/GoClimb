@@ -17,6 +17,7 @@ urlpatterns = [
     path('Crags4', views.Crags4, name="Crags4"),
     path('Crags5', views.Crags5.as_view(), name="Crags5"),
     #######################################################
+    path('savedCrags', views.SavedCrag, name="savedCrags"),
     path('MyClimbs', views.myClimbsView.as_view(), name="MyClimbs"),
     path('MyCommunity', views.myCommunityView.as_view(), name="MyCommunity"),
     path('likePost', views.likePostView.as_view(),name="likePost"),

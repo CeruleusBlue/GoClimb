@@ -40,7 +40,7 @@
         <div class="container">
             
             <h1 text-align: center; style="color: orange;">Your score</h1 >
-            <h1 text-align: center;  class="num" data-val="1000" style="color: orange; margin-top: 20px; font-weight:bolder; font-size: 100px;">0000</h1>
+            <h1 text-align: center;  class="num" data-val="{{level}}" style="color: orange; margin-top: 20px; font-weight:bolder; font-size: 100px;">0000</h1>
             
         </div>
         
@@ -55,7 +55,7 @@
         </div>
     </div>
     <script>let valueDisplays = document.querySelectorAll(".num");
-        let interval = 4000;
+        let interval = 500;
         valueDisplays.forEach((valueDisplay) => {
           let startValue = 0;
           let endValue = parseInt(valueDisplay.getAttribute("data-val"));
