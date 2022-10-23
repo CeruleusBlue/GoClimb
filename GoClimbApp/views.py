@@ -2,6 +2,9 @@
 
     #import 
 
+from math import log
+import datetime
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View
@@ -16,17 +19,15 @@ from .serializers import *
 import datetime
 
 from .models import *
+from .models import userProfile
 from .forms import *
-
-
-
-import urllib.request
-import json
+import json, urllib
 
 class indexView(View):
     template_name = 'index.html'
     def get(self, request):
         return render(request, self.template_name)
+
 
 class homeView(LoginRequiredMixin, View):
     login_url='signIn'
@@ -56,23 +57,36 @@ def logoutUser(request):
         logout(request)
         return redirect('signIn')
 
+
+#user registration page 
 class signUpView(View):
+    
     template_name = 'signUp.html'
     form = CreateUserForm()
     context = {'form': form}
 
     def get(self, request):
+        
+        #redirect user to home page after user authentication
         if request.user.is_authenticated:
             return redirect('home')
         return render(request, self.template_name, self.context)
     
     def post(self, request):
+        
+        #create user with Django's CreateUserForm
         self.form = CreateUserForm(request.POST)
         if self.form.is_valid():
             self.form.save()
             username = self.form.cleaned_data.get('username')
+            
+            #assigning user their provided username
             user = User.objects.get(username=username)
+            
+            #assign a unique userID to each user 
             userProfile.objects.create(userID=user)
+            
+            #upon successfully creating new user, system flashes a message as "Account was created for user_name"
             messages.success(request, 'Account was created for ' + username)
             return redirect('signIn')
         else:    
@@ -139,27 +153,27 @@ class settingsView(LoginRequiredMixin, View):
 def Crags(request):
     return render(request,'Crags.html')
 
+
+#Crags page with real time weather update and potential hazard warnings 
+#Requires user to login
 class Crags1(LoginRequiredMixin, View):
+    
+    
     login_url='signIn'
     template_name = 'Crags1.html'
 
 
     def get(self, request):
+        #empty python dictionary created to later store the values returned from the weather API call 
         data = {}
 
-        city = 'Wollongong'
-
-        source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q=' +
-                                            city + '&units=metric&appid=6e1079025f4832f4f4947ebbf8276420').read()
+        #a real time weather API is acquired from OpenWeatherMap 
+        #the returned data is in a json data format and is loaded as a Python dictionary 
+        source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q=Wollongong&units=metric&appid=6e1079025f4832f4f4947ebbf8276420').read()
         list_of_data = json.loads(source)
 
 
-
-       # if int(list_of_data['rain']['3h']) > 5:
-          #  warningData["windWarning"] = "Wind Hazard!"
-            
-        
-
+        #the data dictionary is populated with weather data attributes considered necessary for the project
         data = {
             "temp": str(list_of_data['main']['temp']) + ' °C',
             "pressure": str(list_of_data['main']['pressure']),
@@ -169,12 +183,19 @@ class Crags1(LoginRequiredMixin, View):
             'icon': list_of_data['weather'][0]['icon'],
             "wind": str(list_of_data['wind']['speed']) + ' m/s'
         }
-        print(data)
-
         
-        if float(list_of_data['wind']['speed']) > 4:
-            data["windWarning"] = 'Wind Hazard!'
 
+        #Creating Hazard reports
+        
+        #potential wind hazard is reported in case of high wind speed  
+        if float(list_of_data['wind']['speed']) > 2:
+            data["windWarning"] = 'Wind Hazard!'
+        
+        #Chances of rain forecasted if the sky is cloudy
+        if str(list_of_data['weather'][0]['main']) == 'Clouds':
+            data["RainForecasted"] = 'Rain Forecasted!'
+            
+        #potential rain hazard is reported in case of rain 
         if str(list_of_data['weather'][0]['main']) == 'Rain':
             data["rainWarning"] = 'Rain Hazard!'
             
@@ -223,9 +244,20 @@ class Crags3(LoginRequiredMixin, View):
 def Crags4(request):
     return render(request,'Crags4.html')
 
-def Crags5(request):
-    return render(request,'Crags5.html')
-
+class Crags5(LoginRequiredMixin, View):
+    login_url='signIn'
+    template_name = 'Crags5.html'
+    def get(self, request):
+        print(request.GET)
+        if(len(request.GET)==2):
+            grade = int(request.GET['grade'])
+            rating = int(request.GET['rating'])
+            increase = int(log(grade*rating))
+            profile = userProfile.objects.get(userID=request.user)
+            profile.level+=increase
+            profile.save(update_fields=["level"])
+        return render(request, self.template_name)
+        
 def SavedCrag(request):
     return render(request,'savedCrags.html')
 ###########################################################

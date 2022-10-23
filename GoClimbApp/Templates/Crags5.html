@@ -33,6 +33,7 @@
 <div style="width:100%;height: auto;text-align: center;"><img src="{% static 'images/crag 6.jpg' %}"> </div>
 
 <br><br>
+<form method="get">
 <table>
 
   <form action="" method="get">
@@ -66,20 +67,20 @@
       ;<button style="width: auto;height: auto; background-color: #f04c26;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b style="font-size:30px;">Climb Style &nbsp;</b> 
       <span style="font-size:30px;" class="caret"></span></button>
       <ul style="width: 100%;height: auto;" class="dropdown-menu">
-        <li><a href="#">Option 1</a></li>
-        <li><a href="#">Option 2</a></li>
-        <li><a href="#">Option 3</a></li>
+        <li>    <input type="radio" id="gradeRadio" name="grade" value="2" ><label for="">2+</label></li>
+        <li>    <input type="radio" id="gradeRadio" name="grade" value="3" ><label for="">3+</label></li>
+        <li>    <input type="radio" id="gradeRadio" name="grade" value="4" ><label for="">4+</label></li>
       </ul>
     </div>
     </td >
     <td style="text-align: center;">
       <div class="dropdown">
-        &nbsp; &nbsp;<button style="width: auto;height: auto; background-color: #f04c26;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b style="font-size:30px;">Climb Level &nbsp;</b>
+        &nbsp; &nbsp;<button style="width: auto;height: auto; background-color: #f04c26;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b style="font-size:30px;">Climb Rating &nbsp;</b>
         <span  style="font-size:30px;" class="caret"></span></button>
         <ul style="width: 100%;height: auto;" class="dropdown-menu">
-          <li><a href="#">Option 1</a></li>
-          <li><a href="#">Option 2</a></li>
-          <li><a href="#">Option 3</a></li>
+          <li>    <input type="radio" id="gradeRadio" name="rating" value="15" ><label for="">15+</label></li>
+          <li>    <input type="radio" id="gradeRadio" name="rating" value="20" ><label for="">20+</label></li>
+          <li>    <input type="radio" id="gradeRadio" name="rating" value="25" ><label for="">25+</label></li>
         </ul>
       </div>
       </td>
@@ -91,6 +92,7 @@
   <div style="text-align: center;padding: 5%; margin-top: 10%;">
   <button style="background-color: #f04c26;width: 50%;height:40px ;border-radius: 25px;" > <a href="{% url 'MyClimbs' %}"><b style="color: white;font-size: medium;">Log Climb</b></a></button>
   </div>
+</form>
 
 
     <br><br><br><br><br>

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-@lv_y=9m@v%_i6q*bpnq*6@2vs9gho8#x7b3m&e=z-)0z#xx1p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['goclimb.azurewebsites.net', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -135,4 +135,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 MEDIA_URL = '/media/'
 
-CSRF_TRUSTED_ORIGINS = ['https://goclimb.azurewebsites.net']
+CSRF_TRUSTED_ORIGINS = []

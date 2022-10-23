@@ -95,8 +95,15 @@
               src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
           <h4><span class="badge badge-primary">Description : </span> {{description}}</h4>
           <h4><span class="badge badge-primary">Wind Speed :</span> {{wind}}</h4>
-          <h4><span class="badge badge-primary">Wind Hazard! :</span> {{windWarning}}</h4>
-          <h4><span class="badge badge-primary">Rain Hazard! :</span> {{rainWarning}}</h4>
+            
+            
+            
+          <!-- The following values only appear if certain conditions of the control flow statements are fullfiled-->
+          <!-- The values below are potential hazard warning and only fire wher there is an extreme weather-->
+
+          <h4>{{windWarning}}</h4>
+          <h4>{{rainWarning}}</h4>
+          <h4>{{RainForecasted}}</h4>
 
         </div>
       </div>
