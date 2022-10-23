@@ -24,23 +24,35 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/YouTubePopUp.css' %}">
 
 </head>
-<div>
-  <button><a href="{% url 'Crags5' %}">Next</button>  
-</div>
+
 <body>
+
+    <div>
+        {%include "UserPanel.html" with user=request.user%}
+      </div>
 <br><br>
 <div class="about-image"style="text-align:right" >
     <a href="{% url 'MyClimbs' %}"> <img src="{% static 'images/circle.png' %}"  style="width: 25px; height: 25px;" alt="" /></a> &nbsp;
     <a> <img src="{% static 'images/mheart.png' %}" style="width: 27px; height: 27px;" alt="" /></a> &nbsp;
-    <a> <img src="{% static 'images/pin.png' %}" style="width: 25px; height: 25px;" alt="" /></a> 
+    <!-- <a> <img src="{% static 'images/pin.png' %}" style="width: 25px; height: 25px;" alt="" /></a>  -->
 </div>
+<h1 style=" text-align: center;">
+    <label style="font-size:18px;">Lets start tracking routes for you!</label>
+</h1>
+
 
 
 
 <br><br>
 <div style="text-align:center ;">
-    <iframe width="360" height="315" src="https://www.youtube.com/embed/vOisdItNimo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/9AQlXqI4Jwg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    
 </div>
+
+
+  <a class="btn  border border-darks"
+    style="background-color: orange;  border-radius: 30px; width: 16%; margin-top: 2%;color: black; margin-left: 40%;"href="{% url 'Crags5' %}">Next!
+  </a>
 
 
     <script src="{% static 'js/jquery.min.js' %}"></script>

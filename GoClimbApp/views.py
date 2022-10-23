@@ -10,7 +10,9 @@ from django.core.paginator import Paginator             #Used for implementing p
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.core import serializers
+import json
+from .serializers import *
 import datetime
 
 from .models import *
@@ -203,7 +205,14 @@ class Crags2(LoginRequiredMixin, View):
                 routes = cragRoute.objects.filter(rating__gte=rating, grade__gte=grade, length__gte = 25)
             else:
                 routes = cragRoute.objects.filter(rating__gte=rating, grade__gte=grade, length__lte = 25)
-            return render(request, 'Crags3.html', {'routes':routes, 'length':len(routes)})
+
+            serialize_routes=CragRouteSerializer(routes,many=True)
+            data =  serialize_routes.data
+            print(data[1])
+            
+            # for path in routes:
+            result=json.dumps(serialize_routes.data)            
+            return render(request, 'Crags3.html', {'routes':result, 'length':len(routes),'imgs':routes})
         return render(request, self.template_name)
 class Crags3(LoginRequiredMixin, View):
     login_url='signIn'
@@ -216,4 +225,7 @@ def Crags4(request):
 
 def Crags5(request):
     return render(request,'Crags5.html')
+
+def SavedCrag(request):
+    return render(request,'savedCrags.html')
 ###########################################################

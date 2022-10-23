@@ -53,10 +53,11 @@
         <div>
             <form method="POST" action="">
                 {% csrf_token %}
-                <input type="text" name="title">
-                <textarea style="background-color: rgb(151, 151, 243) ;" id="message" placeholder="Message" name="message" rows="4" cols="50"></textarea>
+                
+                <textarea style="background-color: white; margin-top: 3px;border-radius: 10px;" id="message" placeholder="Message" name="message" rows="4" cols="100"></textarea>
                 <br>
-                <input type="submit" value="     Post    " style="background-color:#f84c24; ">
+                <input class="btn  border border-darks"
+                style="background-color: orange;  border-radius: 30px; width: 16%; margin-top: 1%;color: black; " type="submit" value="Post">
             </form>
         </div>
         <br><br><br>

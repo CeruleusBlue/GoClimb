@@ -26,35 +26,24 @@
 
 <body>
     <section class="header">
-        <div class="navbar-option">
-            <div class="container">
-                <nav class="navbar navbar-default">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="{% url 'index' %}"><img style="height:250%" src="{% static 'images/Log.png' %}" alt="" /></a>
-                    </div>
-
-                </nav>
+        
+        <div class="container" style="height: 130%;  width: 100%;text-align: center; background-image: linear-gradient(to right, darkorange , yellow,crimson); ">
+            <div> 
+                <a href="{% url 'signIn' %}"><img style="height: 40%; width:40%; text-align: center;margin-top: 10%;" src="{% static 'images/Log.png' %}" alt="" /></a>
+                
             </div>
+            <div style="font-size: 40px;margin-top: 10%; color: black;">
+                <a href="{% url 'signIn' %}" style="color: black; font-size: larger; font-weight: bold;"> Go Climb</a>
+                <!-- <img src="{% static 'images/letsgo.png' %}" alt="" /> -->
+            </div>
+            
+
         </div>
-
-
-
-        <section class="banner">
-            <div class="container">
-                <div class="banner-content">
-                    <div class="owl-carousel owl-theme">
-                        <div class="item">
-                            <h1 style="color:#F04C26;">Boulder <span style="color:black;"> Up !</span></h1>
-                            <!-- <p style="color:white;">Live Life to the Fullest</p> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </section>
-    <div style=" background-color: #F04C26;">
-        <a href="{% url 'signIn' %}"><img src="{% static 'images/letsgo.png' %}" alt="" /></a>
-    </div>
+    <!-- <div style=" background-image:linear-gradient(90deg, #FFA500,)">
+        <a href="{% url 'signIn' %}"> <img src="{% static 'images/letsgo.png' %}" alt="" /></a>
+       
+    </div> -->
 
 
 

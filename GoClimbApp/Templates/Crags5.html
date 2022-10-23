@@ -25,22 +25,45 @@
 </head>
 
 <body>
-  <div>
-    <div class="about-image">
-        <a href="{% url 'home' %}"> <img src="{% static 'images/ID.png' %}" style="width: 96px; height: 96px;" alt="" />Customer ID</a>
-    </div> 
-</div>
+ <div>
+        {%include "UserPanel.html" with user=request.user%}
+      </div>
 <br><br>
 
 <div style="width:100%;height: auto;text-align: center;"><img src="{% static 'images/crag 6.jpg' %}"> </div>
 
 <br><br>
 <table>
-<tr style="text-align: center;">
+
+  <form action="" method="get">
+    <div>
+      <h1 style="background-color: #aaaaa4;margin-top: 6px; text-align: center;"><b style="font-size:18px; ">Climb Rate</b></h1>
+      <div style="text-align:center;font-size:20px;">
+        <input type="radio" id="specifyColor" name="Rating" value="2" checked>
+        <label for="">2+</label>&emsp;&emsp;&emsp;
+        <input type="radio" id="specifyColor" name="Rating" value="3">
+        <label for="">3+</label>&emsp;&emsp;&emsp;
+        <input type="radio" id="specifyColor" name="Rating" value="4">
+        <label for="">4+&emsp;&emsp;&emsp;
+      </div>
+    </div>
+    <div>
+      <h1 style="background-color: #aaaaa4; text-align: center;"><b style="font-size:18px;">Climb Grade</b></h1>
+      <div style="text-align:center;font-size:20px;">
+        <input style="color:orange" type="radio" id="specifyColor" name="Grade" value="15" checked>
+        <label for="">15+</label>&emsp;&emsp;&emsp;
+        <input type="radio" id="specifyColor" name="Grade" value="20">
+        <label for="">20+</label>&emsp;&emsp;&emsp;
+        <input type="radio" id="specifyColor" name="Grade" value="25">
+        <label for="">25+&emsp;&emsp;&emsp;
+      </div>
+    </div>
+</div>
+<!-- <tr style="text-align: center;">
 
   <td style="text-align: center;">
     <div class="dropdown">
-      &nbsp;<button style="width: auto;height: auto; background-color: #f04c26;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b style="font-size:30px;">Climb Style &nbsp;</b> 
+      ;<button style="width: auto;height: auto; background-color: #f04c26;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b style="font-size:30px;">Climb Style &nbsp;</b> 
       <span style="font-size:30px;" class="caret"></span></button>
       <ul style="width: 100%;height: auto;" class="dropdown-menu">
         <li><a href="#">Option 1</a></li>
@@ -62,11 +85,11 @@
       </td>
 
 </tr>
-</table>
+</table> -->
 <br><br><br>
   
-  <div style="text-align: center;padding: 5%;">
-  <button style="background-color: #f04c26;width: 50%;height:40px ;border-radius: 25px;" > <a href="{% url 'Crags3' %}"><b style="color: white;font-size: medium;">Log Climb</b></a></button>
+  <div style="text-align: center;padding: 5%; margin-top: 10%;">
+  <button style="background-color: #f04c26;width: 50%;height:40px ;border-radius: 25px;" > <a href="{% url 'MyClimbs' %}"><b style="color: white;font-size: medium;">Log Climb</b></a></button>
   </div>
 
 

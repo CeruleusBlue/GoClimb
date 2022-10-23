@@ -23,32 +23,51 @@
     <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/YouTubePopUp.css' %}">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        h1 {text-align: center;}
+        h2 {text-align: center;}
+        p  {text-align: center;}
+        
+    </style>
 </head>
 
-<body style="background-color: #ed9c06;">
+<body >
     <div>
-        <div>
-            {%include "UserPanel.html" with user=request.user %}
+        {%include "UserPanel.html" with user=request.user %}
+    </div>
+    <div style="background-color: black; margin-top: 3px; height: 600px;">
+
+        <div class="container">
+            
+            <h1 text-align: center; style="color: orange;">Your score</h1 >
+            <h1 text-align: center;  class="num" data-val="1000" style="color: orange; margin-top: 20px; font-weight:bolder; font-size: 100px;">0000</h1>
+            
+        </div>
+        
+        
+        <div style="text-align: center; margin-top: 3px; width: 100%;">
+            <a href="{% url 'home' %}"> <img src="{% static 'images/levelup.GIF' %}" style="width: 400px; height: 300px;" alt="" /> </a>
         </div>
         <div class="about-image">
-            <a href="{% url 'home' %}"> <img src="{% static 'images/medal.png' %}" style="width: 60px; height: 60px;" alt="" /> <a style="font-weight: bold;color: black;">Level: Here the critria</a> </a>
-        </div>
-        <div style="text-align: center;">
-            <p>
-                <br>
-                <a style="font-weight: bold;color: black;">     Here the task module of yours   </a><br>
-                <a href="{% url 'home' %}"> <img src="{% static 'images/progress-bar.png' %}" style="width: 96px; height: 96px;" alt="" />
-            </p>
-        </div>
-        <div style="text-align: center;">
-            <a href="{% url 'home' %}"> <img src="{% static 'images/progress.png' %}" style="width: 500px; height: 400px;" alt="" /> </a>
-        </div>
-        <div class="about-image">
-            <a href="{% url 'home' %}"> <img src="{% static 'images/share.png' %}" style="width: 60px; height: 60px;" alt="" />
-                <p style="color: black;font-weight: bold;"> Share Your Progress With Your <br> Climber Friend !</p>
+            <a href="{% url 'home' %}"> <img src="{% static 'images/share.png' %}" style="width: 30px; height: 30px; " alt="" />
+                <p style="color: orange;font-weight: bold;  font-size: 30px; font-weight:bolder;"> Keep climbing to earn more points</p>
             </a>
         </div>
     </div>
+    <script>let valueDisplays = document.querySelectorAll(".num");
+        let interval = 4000;
+        valueDisplays.forEach((valueDisplay) => {
+          let startValue = 0;
+          let endValue = parseInt(valueDisplay.getAttribute("data-val"));
+          let duration = Math.floor(interval / endValue);
+          let counter = setInterval(function () {
+            startValue += 1;
+            valueDisplay.textContent = startValue;
+            if (startValue == endValue) {
+              clearInterval(counter);
+            }
+          }, duration);
+        });</script>
 
 
 
