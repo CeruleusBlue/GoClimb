@@ -10,7 +10,11 @@ from ..models import MBPost, MBPostLikeStatus, userProfile
 
 @register.simple_tag
 def getLevel(user : User):
-    return userProfile.objects.get(userID=user).level
+    return str(userProfile.objects.get(userID=user).level)
+
+@register.simple_tag
+def getUserName(user: User):
+    return user.username.capitalize()
 
 @register.simple_tag
 def getLiked(user, post):

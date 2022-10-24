@@ -102,7 +102,6 @@ class myClimbsView(LoginRequiredMixin, View):
     login_url='signIn'
     template_name = 'MyClimbs.html'
     def get(self, request):
-        print(request.GET)
         return render(request, self.template_name, {'level': userProfile.objects.get(userID=request.user).level})
 
 class myCommunityView(LoginRequiredMixin, View):
