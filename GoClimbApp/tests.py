@@ -34,7 +34,7 @@ dummyTestPassword = "password"
 dummyTestemail = "user@example.com"
 
 
-#Method to create a dummy user in the test database
+#Method to create dummy user in the test database
 def create_user():
     try:
         user = User.objects.create_user(username=dummyTestUsername, email=dummyTestemail,password=dummyTestPassword)
