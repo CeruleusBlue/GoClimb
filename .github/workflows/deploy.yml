@@ -13,12 +13,13 @@ jobs:
         python-version: [3.9]
   
     steps:
+    - name: checkout repo
+        uses: actions/checkout@v3
     - name: Install OpenSSH
       run: |
         sudo apt-get install openssh-client
 
     - name: Open SSH
       run: |
-        pwd
         cd .github/workflows
         ssh -i "key.pem" ubuntu@ec2-54-252-206-212.ap-southeast-2.compute.amazonaws.com
