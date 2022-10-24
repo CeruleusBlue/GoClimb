@@ -17,5 +17,5 @@ jobs:
       with:    
         host: ec2-54-252-206-212.ap-southeast-2.compute.amazonaws.com
         username: ubuntu
-        key_path: key.pem
-        script: Deploy.sh
+        key_path: .github/workflows/key.pem
+        script: .github/workflows/Deploy.sh
