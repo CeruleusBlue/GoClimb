@@ -16,7 +16,7 @@
                 <span><a href="{% url 'home' %}"> <img src="{% static 'images/ID.png' %}"
                             style="width: 5%; height: 5%;display: inline-block; " alt="" /></a></span>
                 <span>
-                    <h3 style="color: goldenrod ;display: inline-block; margin-top: 2px;">Hi {{user}}!</h3>
+                    <h3 style="color: goldenrod ;display: inline-block; margin-top: 2px;">Hi {% getUserName user %}!</h3>
                 </span>
             </span>
 
@@ -26,8 +26,7 @@
             <span colspan="3" style="margin-left: 40%;">
                 <span><img src="{% static 'images/coinr.png' %}"
                         style="width: 20px; height: 20px; display: inline-block;" /></span>
-                <span>
-                </span>
+                    <span><h6 style="color: goldenrod ;display: inline-block; font-size: 25px; vertical-align: middle; ">{% getLevel user %}</h6></span>
             </span>
             <span><a class="btn" style="margin-left: 2%; background-color: orange;" href="{% url 'logout' %}"> Logout </a></span>
             
