@@ -13,7 +13,9 @@ jobs:
         python-version: [3.9]
   
   steps:
-  - uses: appleboy/ssh-action@master
+  - name: SSH execution  
+    uses: appleboy/ssh-action@master
+    with:    
         host: ec2-54-252-206-212.ap-southeast-2.compute.amazonaws.com
         username: ubuntu
         key_path: key.pem
