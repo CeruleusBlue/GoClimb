@@ -6,8 +6,8 @@ Pre-Requisites
 <div>
     1. django<br>
     2. mysqlclient<br>
-    3. djangorestframework
-    4. whitenoise
+    3. djangorestframework<br>
+    4. whitenoise<br>
  
     
     
