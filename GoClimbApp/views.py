@@ -252,7 +252,7 @@ class Crags5(LoginRequiredMixin, View):
             previousLevel = profile.level
             profile.level+=increase
             profile.save(update_fields=["level"])
-            return redirect('MyClimbs')
+            return redirect('MyClimbs') 
         return render(request, self.template_name)
         
 def SavedCrag(request):
