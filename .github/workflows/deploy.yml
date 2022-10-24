@@ -21,4 +21,5 @@ jobs:
     - name: Open SSH
       run: |
         cd .github/workflows
+        chmod 400 key.pem
         ssh -tt -i "key.pem" ubuntu@ec2-54-252-206-212.ap-southeast-2.compute.amazonaws.com
