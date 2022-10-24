@@ -311,6 +311,7 @@ class cragsViewTest(TestCase):
         print("SUCCESS")
 
 
+
 #Test case for MyClimbs View 
 class MyClimbsViewTest(TestCase):
 
@@ -410,6 +411,7 @@ class myCommunityViewTest(TestCase):
         cleanup()
         
         print("SUCCESS")
+
 
 
 #Test case for likePost View 
@@ -694,7 +696,9 @@ class Crags3Test(TestCase):
         print("SUCCESS")
 
 
+
 #Crags4 simply returns html page
+
 
 
 #Test case for Crag5 
