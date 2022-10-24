@@ -15,6 +15,37 @@ from .models import MBPostLikeStatus
 import datetime
 from math import log
 
+
+class t1_AuthenticationTests(TestCase):
+    userDetails  = {
+        'username':'testUser',
+        'email':'testUser@test.com',
+        'password1':'password',
+        'password2':'password'
+    }
+    def test1_SignUp(self):
+        print("\nTesting SignUp:")
+        response = testClient.post('/signUp', self.userDetails)
+        print("SignUp status code: ", response.status_code)
+        self.assertEquals(response.status_code, 200)
+    def test2_SignIn(self):
+        print("\nTesting SignIn:")
+        response = testClient.post('/signIn',{ 'username':self.userDetails['username'], 'password':self.userDetails['password1']})
+        print("SignIn status code: ", response.status_code)
+        self.assertEquals(response.status_code, 200)
+
+class t2_URLTests(TestCase):
+    testURLs = ['','index', 'home','Crags','MyClimbs','MyCommunity','Settings']
+    def test1_URLs(self):
+        for x in self.testURLs:
+            print('\n\ntesting URL:/'+ x)
+            response = testClient.get("/"+x)
+            self.assertIn(response.status_code, [200,302])
+            print('SUCCESS')
+
+
+
+
 testClient = Client()
 
 dummyTestUsername = "user"
@@ -32,7 +63,7 @@ def create_user():
     except:
         pass
 
-# Method to delete the created user from test database
+#Method to delete the created user from test database
 def cleanup():
     try:
         user = User.objects.get_by_natural_key(dummyTestUsername)
@@ -55,7 +86,7 @@ def create_post(user):
     except:
         return False
 
-# Method to delete the created post from test database
+#Method to delete the created post from test database
 def cleanupPost():
     try:
         posts = MBPost.objects.all().order_by('-time')
@@ -67,57 +98,42 @@ def cleanupPost():
         pass
 
 
-# class t1_AuthenticationTests(TestCase):
-#     userDetails  = {
-#         'username':'testUser',
-#         'email':'testUser@test.com',
-#         'password1':'password',
-#         'password2':'password'
-#     }
-#     def test1_SignUp(self):
-#         print("\nTesting SignUp:")
-#         response = testClient.post('/signUp', self.userDetails)
-#         print("SignUp status code: ", response.status_code)
-#         self.assertEquals(response.status_code, 200)
-#     def test2_SignIn(self):
-#         print("\nTesting SignIn:")
-#         response = testClient.post('/signIn',{ 'username':self.userDetails['username'], 'password':self.userDetails['password1']})
-#         print("SignIn status code: ", response.status_code)
-#         self.assertEquals(response.status_code, 200)
 
-# class t2_URLTests(TestCase):
-#     testURLs = ['','index', 'home','Crags','MyClimbs','MyCommunity','Settings']
-#     def test1_URLs(self):
-#         for x in self.testURLs:
-#             print('\n\ntesting URL:/'+ x)
-#             response = testClient.get("/"+x)
-#             self.assertIn(response.status_code, [200,302])
-#             print('SUCCESS')
 
-# class indexViewTest(TestCase):
+#Test case for index view 
+class indexViewTest(TestCase):
 
-#     def test_should_land_user_to_landing_page(self):
 
-#         print("\nTesting indexView while requesting by '/':")
+    #Method to test if "/" lands users to index page 
+    def test_should_land_user_to_landing_page(self):
 
-#         response = testClient.get('/')
-#         self.assertEquals(response.status_code, 200)
-#         self.assertTemplateUsed(response, "index.html")
+        print("\nTesting indexView while requesting by '/':")
+
+        response = testClient.get('/')
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, "index.html")
     
-#         print("SUCCESS")
+        print("SUCCESS")
 
-#     def test_should_land_user_to_sign_in_page_while_calling_by_index(self):
 
-#         print("\nTesting indexView while requesting by '/index':")
+    #Method to test if "index" lands users to index page 
+    def test_should_land_user_to_sign_in_page_while_calling_by_index(self):
 
-#         response = testClient.get(reverse('index'))
-#         self.assertEquals(response.status_code, 200)
-#         self.assertTemplateUsed(response, "index.html")
+        print("\nTesting indexView while requesting by '/index':")
 
-#         print("SUCCESS")
+        response = testClient.get(reverse('index'))
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, "index.html")
 
+        print("SUCCESS")
+
+
+
+#Test case for home view 
 class homeViewTest(TestCase):
     
+
+    #Method to test if anonymous user is redirected to signin page when requesting home
     def test_should_redirect_anonymous_user_to_signin_page(self):
 
         print("\nTesting that anonymous user is redirected to signin page when requesting home")
@@ -127,7 +143,9 @@ class homeViewTest(TestCase):
 
         print("SUCCESS")
 
-    def test_should_give_access_to_home_page(self):
+
+    #Method to test if authenticated user can access home page
+    def test_should_give_authenticated_users_access_to_home_page(self):
 
         print("\nTesting that authenticated user can access home page")
 
@@ -142,128 +160,14 @@ class homeViewTest(TestCase):
 
         print("SUCCESS")
 
-# class signInViewTest(TestCase):
-    
-#     def test_should_return_signIn_page_for_unauthenticated_user_while_doing_get_request(self):
-
-#         print("\nTesting that all users can access signin page")
-
-#         response = self.client.get(reverse('signIn'))
-#         print("response", response)
-#         self.assertEqual(response.status_code, 200)
-
-#         print("SUCCESS")
-
-#     def test_should_redirect_already_authenticated_users_to_home_page(self):
-
-#         print("\nTesting that authenticated user are redirected to home page")
-
-#         create_user()
-
-#         self.client.login(username=dummyTestUsername, password=dummyTestPassword)
-#         response = self.client.get(reverse('signIn'))
-#         print("Response", response)
-#         self.assertEqual(response.status_code, 302)
-#         self.assertEqual(response.url, '/home')
-
-#         cleanup()
-
-#         print("SUCCESS")
-
-#     def test_should_redirect_authenticated_users_to_home_page(self):
-
-#         print("\nTesting that users who submits valid credential are redirected to home page")
-
-#         create_user()
-
-#         response = self.client.post('/signIn',{ 'username':dummyTestUsername, 'password':dummyTestPassword})
-#         self.assertEqual(response.status_code, 302)
-#         self.assertEqual(response.url, '/home')
-
-#         cleanup()
-
-#         print("SUCCESS")
-
-#     def test_should_return_user_to_sigin_page(self):
-
-#         print("\nTesting that users who submits invalid credential are returned back to signin page")
-
-#         create_user()
-
-#         response = self.client.post('/signIn',{ 'username':dummyTestUsername, 'password':"wrongPassword"})
-
-#         self.assertEqual(response.status_code, 200)
-#         self.assertTemplateUsed(response, 'signIn.html')
-#         cleanup()
-
-#         print("SUCCESS")
-
-class signUpViewTest(TestCase):
-    
-    def test_should_redirect_already_authenticated_users_to_home_page(self):
-        print('\ntesting that authenticated users are redicted to homepage while doing get request to signUP')
-
-        create_user()
-
-        self.client.login(username=dummyTestUsername, password=dummyTestPassword)
-
-        response = self.client.get(reverse('signUp'))
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, '/home')
-        cleanup()
-
-        print("SUCCESS")
-
-    def test_should_show_signUp_page_to_unauthenticated_user(self):
-
-        print("\nTesting that all users can access sign up page")
-
-        response = self.client.get(reverse('signUp'))
-        print("response", response)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "signUp.html")
-        cleanup()
-        print("SUCCESS")
 
 
-    def test_should_return_user_to_signUp_page(self):
 
-        userDetails  = {
-          'username':'testUser',
-          'email':'testUser@test.com',
-          'password1':'password',
-        }
-
-        print('\nTesting that users who submit invalid information are returned back to sign Up page')
- 
-        response = self.client.post("/signUp", userDetails)
-        print("response", response)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "signUp.html")
-        cleanup()
-        print("SUCCESS")
-
-
-    def test_should_return_new_user_to_signIn_page(self):
-
-        userDetails  = {
-          'username':'ak',
-          'email':'ak@test.com',
-          'password1':'ak9784@123#%^&',
-          'password2':'ak9784@123#%^&'
-        }
-
-        print('\nTesting that users who submit valid information are returned back to sign In page')
- 
-        response = self.client.post("/signUp", userDetails)
-        print("response", response)
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, "/signIn")
-        print("SUCCESS")
-
-
+#Test case for Crags View 
 class cragsViewTest(TestCase):
 
+
+    #Method to test if anonymous user is redirected to signin page when requesting Crags page
     def test_should_redirect_anonymous_user_to_signin_page(self):
 
         print("\nTesting that anonymous user is redirected to signin page when requesting Crags")
@@ -273,7 +177,10 @@ class cragsViewTest(TestCase):
 
         print("SUCCESS")
 
-    def test_should_give_access_to_crag_page(self):
+
+
+    #Method to test if authenticated user can access crag page
+    def test_should_give_authenticated_user_access_to_crag_page(self):
 
         print("\nTesting that authenticated user can access crag page")
 
@@ -288,11 +195,43 @@ class cragsViewTest(TestCase):
 
         print("SUCCESS")
 
-#myClimbsView Test yours to write
+
+#Test case for MyClimbs View 
+class MyClimbsViewTest(TestCase):
+
+    #Method to test if anonymous user is redirected to signin page when requesting MyClimbs page
+    def test_should_redirect_anonymous_user_to_signin_page(self):
+
+        print("\nTesting that anonymous user is redirected to signin page when requesting MyClimbs")
+
+        response = self.client.get(reverse('MyClimbs'))
+        self.assertEqual(response.status_code, 302)
+
+        print("SUCCESS")
 
 
+    #Method to test if authenticated user can access MyClimbs page
+    def test_should_give_authenticated_user_access_to_myCommunity_page(self):
+
+        print("\nTesting that authenticated user can access MyClimbs page")
+
+        create_user()
+
+        self.client.login(username=dummyTestUsername, password=dummyTestPassword)
+        response = self.client.get(reverse('MyClimbs'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'MyClimbs.html')
+
+        cleanup()
+
+        print("SUCCESS")
+
+
+
+#Test case for MyCommunity View 
 class myCommunityViewTest(TestCase):
 
+    #Method to test if anonymous user is redirected to signin page when requesting MyCommunity page
     def test_should_redirect_anonymous_user_to_signin_page(self):
 
         print("\nTesting that anonymous user is redirected to signin page when requesting myCommunity")
@@ -302,6 +241,8 @@ class myCommunityViewTest(TestCase):
 
         print("SUCCESS")
 
+
+    #Method to test if authenticated user can access MyCommunity page
     def test_should_give_access_to_myCommunity_page(self):
 
         print("\nTesting that authenticated user can access myCommunity page")
@@ -317,6 +258,8 @@ class myCommunityViewTest(TestCase):
 
         print("SUCCESS")
     
+
+    #Method to test if authenticated user can create a new post 
     def test_should_create_new_post(self):
         
         print("\nTesting that authenticated user can create new post")
@@ -329,7 +272,7 @@ class myCommunityViewTest(TestCase):
 
         create_user()
         self.client.login(username=dummyTestUsername, password=dummyTestPassword)
-        # Here user is authenticated and is creating a new post
+        #Here user is authenticated and is creating a new post
 
         #Requesting with post data to Create a new post
         response = self.client.post('/MyCommunity',{'message':'testPost', 'title':'testTitle'})
@@ -354,8 +297,10 @@ class myCommunityViewTest(TestCase):
         print("SUCCESS")
 
 
+#Test case for likePost View 
 class likePostViewTest(TestCase):
 
+    #Method to test if anonymous user is redirected to signin page when requesting likePost
     def test_should_redirect_anonymous_user_to_signin_page(self):
 
         print("\nTesting that anonymous user is redirected to signin page when requesting likePost")
@@ -365,9 +310,11 @@ class likePostViewTest(TestCase):
 
         print("SUCCESS")
 
-    # This will check if the liked status is added to the post and it should be true
 
-    # The scenerio is User didn't liked this post earliar nor user liked and than disliked the post. That User did not at all interacted with the post like status
+
+    # Method to check if the liked status is added to the post and it a user likes it (is True)
+
+    #The user did not like the post before 
     def test_should_add_the_like_status_for_given_post_id_to_true(self):
 
         print("\nTesting that authenticated user can like a post")
@@ -405,9 +352,10 @@ class likePostViewTest(TestCase):
         print("SUCCESS")
     
 
-    # This will check if the liked status is changed for the post from true to false
 
-    # The scenerio is User liked this post earliar and now user is unliking the post
+    # Method to check if the liked status is changed for the post from True to False
+    # The User liked this post earlier and now user is unliking the post
+
     def test_should_update_like_status_for_given_post_id_to_false(self):
 
         print("\nTesting that authenticated user can unlike a post")
@@ -417,7 +365,7 @@ class likePostViewTest(TestCase):
         # Store the user for later use
         user = User.objects.get_by_natural_key(dummyTestUsername)
 
-        #login using the created user credenrial
+        #login using the created user credential
         self.client.login(username=dummyTestUsername, password=dummyTestPassword)
 
         #Create a post for the the logged in user 
@@ -451,9 +399,8 @@ class likePostViewTest(TestCase):
         print("SUCCESS")
 
 
-    # This will check if the liked status is changed for the post from false to true
-
-    # The scenerio is User liked this post earliar and then unliked it and now user is liking the post again
+    # Method to check if the liked status is changed for the post from False to True
+    # The scenerio is User liked this post earlier and then unliked it and now user is liking the post again
     def test_should_update_like_status_for_given_post_id_from_false_to_true(self):
             
             print("\nTesting that authenticated user can like a post that was unliked earliar")
@@ -497,8 +444,45 @@ class likePostViewTest(TestCase):
             print("SUCCESS")
 
 
-class Craig1Test(TestCase):
+
+#Test case for Settings View 
+class SettingsViewTest(TestCase):
+
+    #Method to test if anonymous user is redirected to signin page when requesting Settings page
+    def test_should_redirect_anonymous_user_to_signin_page(self):
+
+        print("\nTesting that anonymous user is redirected to signin page when requesting Settings")
+
+        response = self.client.get(reverse('Settings'))
+        self.assertEqual(response.status_code, 302)
+
+        print("SUCCESS")
+
+
+    #Method to test if authenticated user can access Settings page
+    def test_should_give_authenticated_user_access_to_Settings_page(self):
+
+        print("\nTesting that authenticated user can access Settings page")
+
+        create_user()
+
+        self.client.login(username=dummyTestUsername, password=dummyTestPassword)
+        response = self.client.get(reverse('Settings'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'Settings.html')
+
+        cleanup()
+
+        print("SUCCESS")
+
+
+
+
+
+#Test case for Crags1 
+class Crag1Test(TestCase):
     
+    #Method to test if anonymous user is redirected to signin page when requesting crag1
     def test_should_redirect_anonymous_user_to_signin_page(self):
         # self.client.login(username="user", password="password")
         print("\nTesting that anonymous user is redirected to signin page when requesting crag1")
@@ -507,6 +491,8 @@ class Craig1Test(TestCase):
         cleanup()
         print("SUCCESS")
 
+
+    #Method to test if authenticated user receives weather data
     def test_should_return_data_for_logged_in_user(self):
         print("\nTesting that authenticated user receives weather data")
        
@@ -519,8 +505,12 @@ class Craig1Test(TestCase):
         print("SUCCESS")
 
 
+
+#Test case for Crag2 
 class Crags2Test(TestCase):
 
+
+    #Method to test if anonymous user is redirected to signin page when requesting crag2
     def test_should_redirect_anonymous_user_to_signin_page(self):
         # self.client.login(username="user", password="password")
         print("\nTesting that anonymous user is redirected to signin page when requesting crag2")
@@ -528,6 +518,8 @@ class Crags2Test(TestCase):
         self.assertEqual(response.status_code, 302)
         print("Success")
 
+
+    #Method to test if authenticated user can access crag2 page
     def test_should_give_access_to_logged_in_user(self):
         print("\nTesting that authenticated user can access crag2 page")
 
@@ -540,6 +532,8 @@ class Crags2Test(TestCase):
         cleanup()
         print("SUCCESS")
 
+
+    #Method to test if authenticated users redirected to Crags3.html view when requesting Crags2 with valid parameters
     def test_should_redirect_user_Crags_view_when_requesting(self):
         print("\nTesting that authenticated users redirected to Crags3.html view when requesting Crags2 with valid parameters")
 
@@ -553,8 +547,12 @@ class Crags2Test(TestCase):
         print("SUCCESS")
 
 
+
+#Test case for Crag3 
 class Crags3Test(TestCase):
 
+
+    #Method to test if anonymous user is redirected to signin page when requesting Crags3
     def test_should_redirect_anonymous_user_to_signin_page(self):
 
         print("\nTesting that anonymous user is redirected to signin page when requesting Crags3")
@@ -564,6 +562,9 @@ class Crags3Test(TestCase):
 
         print("SUCCESS")
 
+
+
+    #Method to test if authenticated user can access crags3 page
     def test_should_give_access_to_crags3_page(self):
 
         print("\nTesting that authenticated user can access crags3 page")
@@ -579,27 +580,34 @@ class Crags3Test(TestCase):
 
         print("SUCCESS")
 
+
+#Test case for Crags4 
 class Crags4Test(TestCase):
 
+    #Method to test if all users can access Crags4 page
     def testing_that_all_users_can_access_Crags4(self):
-        print("\nTesting that all users can access Crags4 page")
-
-        create_user()
-        self.client.login(username=dummyTestUsername, password=dummyTestPassword)
+        print("\nTesting that all user can access crags4 page")
         response = self.client.get(reverse('Crags4'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "Crags4.html")
+
         print("SUCCESS")
 
+
+#Test case for Crag5 
 class Crag5Test(TestCase):
     
+
+    #Method to test if anonymous user is redirected to signin page when requesting crag5
     def test_should_redirect_anonymous_user_to_signin_page(self):
         # self.client.login(username="user", password="password")
         print("\nTesting that anonymous user is redirected to signin page when requesting crag5")
         response = self.client.get(reverse('Crags5'))
         self.assertEqual(response.status_code, 302)
-        print("Success")
+        print("SUCCESS")
 
+
+    #Method to test if authenticated user can access crag5 page
     def test_should_give_access_to_logged_in_user(self):
         print("\nTesting that authenticated user can access crag5 page")
 
@@ -612,6 +620,7 @@ class Crag5Test(TestCase):
         cleanup()
         print("SUCCESS")
 
+    #Method to ensure that when parameters not equal to 2 (grade and rating), it does not update user level
     def test_should_not_update_user_level(self):
         print("\nTesting that when parameters not equal to 2 (grade and rating), it does not update user level")
 
@@ -633,6 +642,8 @@ class Crag5Test(TestCase):
         cleanup()
         print("SUCCESS")
 
+
+    #Method to ensure that when parameters equal to 2 (grade and rating), it update user level
     def test_should_update_user_level(self):
         print("\nTesting that when parameters equal to 2 (grade and rating), it should update user level")
 
