@@ -34,7 +34,9 @@
 
 </head>
 
-<body>
+<body style="background:linear-gradient(to left top,blue,white,yellow);"
+  
+}>
   <div>
     {%include "UserPanel.html" with user=request.user%}
   </div>
@@ -68,8 +70,8 @@
       <tr>
         <td><img style="margin:10px ;" src="{% static 'images\warning.png' %}" alt="warning"></td>
         <td
-          style="text-align:center;background-color: black; color: #f04c26;padding:20px; border-radius: 15px;">
-          <h3 style="color: orange;"> Potential Hazard of <br> landslide and muddy tracks <br> due to 60% rain. </h3>
+          style="text-align:center;background-color: white; color: #f04c26;padding: 18px; border-radius: 15px;">
+          <h3 style="color:darkorange;font-size: 20px;border-style:solid;border-radius: 15px;"> Potential Hazard of <br> landslide and muddy tracks <br> due to 60% rain. </h3>
         </td>
       </tr>
     </table>
@@ -78,9 +80,9 @@
 
 
     <span style="text-align:right ;display: inline-block; margin-left: 25%; padding-bottom: 2px;">
-      <span style="display: inline-block;"></span><img src="{% static 'images\cloud (1).png' %}" alt="" style="width:50px;height:50px; margin-right: 5%;"></span>
-      <span style="display: inline-block;"><img src="{% static 'images\sun.png' %}" alt="" style="width:50px;height:50px;margin-right: 5%;"></span>
-      <span style="display: inline-block;"><img src="{% static 'images\storm.png' %}" alt="" style="width:50px;height:50px;margin-right: 5%;"></span>
+      <span style="display: inline-block;"></span><img src="{% static 'images\cloud (1).png' %}" alt="" style="width:70px;height:70px; margin-right: 5%;"></span>
+      <span style="display: inline-block;"><img src="{% static 'images\sun.png' %}" alt="" style="width:70px;height:70px;margin-right: 5%;"></span>
+      <span style="display: inline-block;"><img src="{% static 'images\storm.png' %}" alt="" style="width:70px;height:70px;margin-right: 5%;"></span>
     </span>
   </div>
   
@@ -92,7 +94,7 @@
           <h4><span class="badge badge-primary">Pressure :</span> {{pressure}} </h4>
           <h4><span class="badge badge-primary">Humidity : </span> {{humidity}}</h4>
           <h4><span class="badge badge-primary">Forecast : </span> {{main}} <img
-              src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
+              src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:80px"></h4>
           <h4><span class="badge badge-primary">Description : </span> {{description}}</h4>
           <h4><span class="badge badge-primary">Wind Speed :</span> {{wind}}</h4>
             
@@ -112,7 +114,7 @@
   
     
   <a class="btn  border border-darks"
-    style="background-color: orange;  border-radius: 30px; width: 25%; margin-top: 3%;color: black; margin-left: 40%;"href="{% url 'Crags2' %}">Lets Climb!
+    style="background-color: orange; font-size:15px;text-align:center; border-radius: 30px; width: 30%; margin-top: 3%;color: black; margin-left: 30% ;"href="{% url 'Crags2' %}">Lets Climb!
   </a>
 
  
