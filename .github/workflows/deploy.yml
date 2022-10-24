@@ -13,9 +13,11 @@ jobs:
         python-version: [3.9]
   
     steps:
-    - uses: appleboy/ssh-action@master
-      with:    
-        host: ec2-54-252-206-212.ap-southeast-2.compute.amazonaws.com
-        username: ubuntu
-        key_path: .github/workflows/key.pem
-        script: .github/workflows/Deploy.sh
+    - name: Install OpenSSH
+      run: |
+        apt-get install openssh-client
+
+    - name: Open SSH
+      run: |
+        cd .github/workflows
+        ssh -i "key.pem" ubuntu@ec2-54-252-206-212.ap-southeast-2.compute.amazonaws.com
