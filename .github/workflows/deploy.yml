@@ -13,8 +13,7 @@ jobs:
         python-version: [3.9]
   
   steps:
-  - name: SSH execution  
-    uses: appleboy/ssh-action@master
+  - uses: appleboy/ssh-action@master
     with:    
         host: ec2-54-252-206-212.ap-southeast-2.compute.amazonaws.com
         username: ubuntu
