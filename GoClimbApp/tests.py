@@ -586,11 +586,11 @@ class Crags4Test(TestCase):
 
     #Method to test if all users can access Crags4 page
     def testing_that_all_users_can_access_Crags4(self):
-        print("\nTesting that all user can access crags4 page")
+        print("\nTesting that all users can access Crags4 page")
+
         response = self.client.get(reverse('Crags4'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "Crags4.html")
-
         print("SUCCESS")
 
 
