@@ -34,7 +34,8 @@
 
 </head>
 
-<body style="background-color:black";
+<body style="background:white");
+
   
 }>
   <div>
@@ -70,8 +71,8 @@
       <tr>
         <td><img style="margin:10px ;" src="{% static 'images\warning.png' %}" alt="warning"></td>
         <td
-          style="text-align:center;background-color: white; color: #f04c26;padding: 0px; border-radius: 15px;">
-          <h3 style="color:darkorange;font-size: 20px;border-radius: 15px;"> Potential Hazard of <br> landslide and muddy tracks <br> due to 60% rain. </h3>
+          style="text-align:center;background-color:orange;padding: 5px; border-radius: 15px;">
+          <h3 style="color:white;font-size: 20px;border-radius: 15px;"> Potential Hazard of <br> landslide and muddy tracks <br> due to 60% rain. </h3>
         </td>
       </tr>
     </table>
@@ -80,14 +81,14 @@
 
 
     <span style="text-align:right ;display: inline-block; margin-left: 25%; padding-bottom: 2px;">
-      <span style="display: inline-block;"></span><img src="{% static 'sunny.gif' %}" alt="" style="width:70px;height:70px; margin-right: 5%;"></span>
-      <span style="display: inline-block;"><img src="{% static 'rainy.gif' %}" alt="" style="width:70px;height:70px;margin-right: 5%;"></span>
-      <span style="display: inline-block;"><img src="{% static 'lighting.gif' %}" alt="" style="width:70px;height:70px;margin-right: 5%;"></span>
+      <span style="display: inline-block;"></span><img src="{% static 'light.gif' %}" alt="" style="width:100px;height:90px; margin-right: 10%;"></span>
+      <span style="display: inline-block;"><img src="{% static 'Cloudysun.gif' %}" alt="" style="width:90px;height:90px;margin-right: 10%;"></span>
+      <span style="display: inline-block;"><img src="{% static 'bluecloud.gif' %}" alt="" style="width:90px;height:90px;margin-right: 10%;"></span>
     </span>
   </div>
   
   
-    <div class=" border-radius:25px;d-flex justify-content-center">
+    <div class=" border-radius:20px;d-flex justify-content-center">
       <div class=" card text-white bg-light ">
         <div class="card-body">
           <h4><span class="badge badge-primary">Temperature in Celsius :</span> {{temp}}</h4>
