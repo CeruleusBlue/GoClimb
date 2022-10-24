@@ -15,26 +15,8 @@ from .models import MBPostLikeStatus
 import datetime
 from math import log
 
-
-class t1_AuthenticationTests(TestCase):
-    userDetails  = {
-        'username':'testUser',
-        'email':'testUser@test.com',
-        'password1':'password',
-        'password2':'password'
-    }
-    def test1_SignUp(self):
-        print("\nTesting SignUp:")
-        response = testClient.post('/signUp', self.userDetails)
-        print("SignUp status code: ", response.status_code)
-        self.assertEquals(response.status_code, 200)
-    def test2_SignIn(self):
-        print("\nTesting SignIn:")
-        response = testClient.post('/signIn',{ 'username':self.userDetails['username'], 'password':self.userDetails['password1']})
-        print("SignIn status code: ", response.status_code)
-        self.assertEquals(response.status_code, 200)
-
-class t2_URLTests(TestCase):
+#Method to test the URLs for every page 
+class URLTests(TestCase):
     testURLs = ['','index', 'home','Crags','MyClimbs','MyCommunity','Settings']
     def test1_URLs(self):
         for x in self.testURLs:
@@ -42,9 +24,6 @@ class t2_URLTests(TestCase):
             response = testClient.get("/"+x)
             self.assertIn(response.status_code, [200,302])
             print('SUCCESS')
-
-
-
 
 
 
@@ -98,8 +77,6 @@ def cleanupPost():
                 post.delete()
     except:
         pass
-
-
 
 
 #Test case for index view 
@@ -162,6 +139,142 @@ class homeViewTest(TestCase):
 
         print("SUCCESS")
 
+
+#Test case for Sign In View
+class signInViewTest(TestCase):
+
+    #Method to test if all users can access signin page 
+      def test_should_return_signIn_page_for_unauthenticated_user_while_doing_get_request(self):
+
+          print("\nTesting that all users can access signin page")
+
+          response = self.client.get(reverse('signIn'))
+          print("response", response)
+          self.assertEqual(response.status_code, 200)
+
+          print("SUCCESS")
+
+
+    #Method to test if authenticated user are redirected to home page
+      def test_should_redirect_already_authenticated_users_to_home_page(self):
+
+          print("\nTesting that authenticated user are redirected to home page")
+
+          create_user()
+
+          self.client.login(username=dummyTestUsername, password=dummyTestPassword)
+          response = self.client.get(reverse('signIn'))
+          print("Response", response)
+          self.assertEqual(response.status_code, 302)
+          self.assertEqual(response.url, '/home')
+
+          cleanup()
+
+          print("SUCCESS")
+
+
+    #Method to test if users who submits valid credential are redirected to home page
+      def test_should_redirect_authenticated_users_to_home_page(self):
+
+          print("\nTesting that users who submits valid credential are redirected to home page")
+
+          create_user()
+
+          response = self.client.post('/signIn',{ 'username':dummyTestUsername, 'password':dummyTestPassword})
+          self.assertEqual(response.status_code, 302)
+          self.assertEqual(response.url, '/home')
+
+          cleanup()
+
+          print("SUCCESS")
+
+
+    #Method to test if users who submits invalid credential are returned back to signin page
+      def test_should_return_user_to_sigin_page(self):
+
+          print("\nTesting that users who submits invalid credential are returned back to signin page")
+
+          create_user()
+
+          response = self.client.post('/signIn',{ 'username':dummyTestUsername, 'password':"wrongPassword"})
+
+          self.assertEqual(response.status_code, 200)
+          self.assertTemplateUsed(response, 'signIn.html')
+          cleanup()
+
+          print("SUCCESS")
+
+
+
+#Test case for Sign up view
+class signUpViewTest(TestCase):
+
+
+    #Method to test if authenticated users are redicted to homepage while doing get request to signUP
+    def test_should_redirect_already_authenticated_users_to_home_page(self):
+        print('\ntesting that authenticated users are redicted to homepage while doing get request to signUP')
+
+        create_user()
+
+        self.client.login(username=dummyTestUsername, password=dummyTestPassword)
+
+        response = self.client.get(reverse('signUp'))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/home')
+        cleanup()
+
+        print("SUCCESS")
+
+
+    #Method to test if all users can access sign up page
+    def test_should_show_signUp_page_to_unauthenticated_user(self):
+
+        print("\nTesting that all users can access sign up page")
+
+        response = self.client.get(reverse('signUp'))
+        print("response", response)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "signUp.html")
+        cleanup()
+        print("SUCCESS")
+
+
+    #Method to test if users who submit invalid information are returned back to sign Up page
+    def test_should_return_user_to_signUp_page(self):
+
+        userDetails  = {
+          'username':'testUser',
+          'email':'testUser@test.com',
+          'password1':'password',
+        }
+
+        print('\nTesting that users who submit invalid information are returned back to sign Up page')
+
+        response = self.client.post("/signUp", userDetails)
+        print("response", response)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "signUp.html")
+        cleanup()
+        print("SUCCESS")
+
+
+    #Method to test if users who submit valid information are returned back to sign In page
+    def test_should_return_new_user_to_signIn_page(self):
+
+        userDetails  = {
+          'username':'Mosammat',
+          'email':'ms@test.com',
+          'password1':'ms9784@123#%^&',
+          'password2':'ms9784@123#%^&'
+        }
+
+        print('\nTesting that users who submit valid information are returned back to sign In page')
+
+        response = self.client.post("/signUp", userDetails)
+        print("response", response)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, "/signIn")
+        print("SUCCESS")
 
 
 
@@ -476,8 +589,6 @@ class SettingsViewTest(TestCase):
         cleanup()
 
         print("SUCCESS")
-
-
 
 
 
