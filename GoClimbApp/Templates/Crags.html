@@ -62,12 +62,13 @@
        
         if (location_name.value === 'Mt Keira') {
           var mapProp = {
+            // lat and long for mt Keira 
             center: new google.maps.LatLng(-34.402798882401214, 150.85642735920308),
             zoom: 14,
 
           };
           var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-          // The marker, positioned at Uluru
+          // positions the marker at mt Keira  
           const marker = new google.maps.Marker({
             position: new google.maps.LatLng(-34.402798882401214, 150.85642735920308),
             map: map,
