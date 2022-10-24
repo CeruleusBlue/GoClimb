@@ -158,9 +158,8 @@ class myCommunityView(LoginRequiredMixin, View):
         The time of the message is then recorded and saved to the database.
         """
         message = request.POST.get("message")
-        title = request.POST.get("title")
         time = datetime.datetime.now()
-        MBPost.objects.create(text=message, title=title, time=time, FKUserProfile=userProfile.objects.get(userID=request.user))
+        MBPost.objects.create(text=message, time=time, FKUserProfile=userProfile.objects.get(userID=request.user))
         return self.get(request)
 
 class likePostView(LoginRequiredMixin, View):
