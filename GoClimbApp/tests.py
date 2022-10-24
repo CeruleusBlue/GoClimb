@@ -3,7 +3,7 @@ from django.shortcuts import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import cragRoute
-# from unittest.mock import  patch, MagicMock
+# from unittest.mock import patch, MagicMock
 # import jsons
 from .views import Crags1
 # import urllib
