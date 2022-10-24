@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Install OpenSSH
       run: |
-        apt-get install openssh-client
+        sudo apt-get install openssh-client
 
     - name: Open SSH
       run: |
