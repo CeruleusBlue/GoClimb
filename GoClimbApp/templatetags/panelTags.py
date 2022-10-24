@@ -10,14 +10,17 @@ from ..models import MBPost, MBPostLikeStatus, userProfile
 
 @register.simple_tag
 def getLevel(user : User):
-    return str(userProfile.objects.get(userID=user).level)
+    """Returns the Level of the User"""
+    return userProfile.objects.get(userID=user).level
 
 @register.simple_tag
 def getUserName(user: User):
+    """Returns the User Name of the User"""
     return user.username.capitalize()
 
 @register.simple_tag
 def getLiked(user, post):
+    """Returns the like icon to diplay based on whether a user likes a post or not"""
     isLiked = None
     try:
         isLiked = MBPostLikeStatus.objects.get(
