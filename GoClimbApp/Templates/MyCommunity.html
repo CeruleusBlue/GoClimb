@@ -66,7 +66,7 @@
             <ul>
                 {% for post in posts %}
                     <img src="{% static 'images/ID.png' %}" style="width: 30px; height: 30px;" alt="" />
-                    <li><div class="post-frame">{{post.text}}</div></li>
+                    <li><div class="post-frame">{{post.text}} </div></li>
                     <a href="/likePost?id={{post.id}}">
                         <img id="likeImage" style="width: 15px; height: 15px; margin-left: 20%;" src="{% getLiked request.user post %}" alt="" />
                     </a>
